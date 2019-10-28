@@ -25,7 +25,7 @@
 	bloodstr.clear_reagents()
 	touching.clear_reagents()
 	var/datum/reagents/R = get_ingested_reagents()
-	if(istype(R)) 
+	if(istype(R))
 		R.clear_reagents()
 	set_nutrition(400)
 	set_hydration(400)
@@ -302,12 +302,6 @@
 
 	var/message = "\The [src] has thrown \the [item]."
 	var/skill_mod = 0.2
-	if(!skill_check(SKILL_HAULING, min(round(itemsize - ITEM_SIZE_HUGE) + 2, SKILL_MAX)))
-		if(prob(30))
-			Weaken(2)
-			message = "\The [src] barely manages to throw \the [item], and is knocked off-balance!"
-	else
-		skill_mod += 0.2
 
 	skill_mod += 0.8 * (get_skill_value(SKILL_HAULING) - SKILL_MIN)/(SKILL_MAX - SKILL_MIN)
 	throw_range *= skill_mod
