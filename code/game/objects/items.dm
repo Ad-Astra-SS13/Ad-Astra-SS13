@@ -83,6 +83,8 @@
 	// Species-specific sprite sheets for inventory sprites
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
+	var/has_item_quality = FALSE
+	var/item_quality = ITEM_QUALITY_NORMAL //see ad_astra_defines.dm
 
 /obj/item/New()
 	..()
@@ -192,7 +194,18 @@
 		else
 			desc_comp += "<span class='danger'>No extractable materials detected.</span><BR>"
 		desc_comp += "*--------*"
-
+	var/quality
+	if(has_item_quality)
+		switch(item_quality)
+			if(ITEM_QUALITY_AWFUL)
+				quality = SPAN_WARNING("absolutely terribly made, and will undoubtably break or fail at some point in the near future.")
+			if(ITEM_QUALITY_NORMAL)
+				quality = "acceptably made, and will likely be sufficent for most purposes."
+			if(ITEM_QUALITY_GOOD)
+				quality = SPAN_BOLD("well made, and will definitely be more than sufficent for most purposes.")
+			if(ITEM_QUALITY_EXCEPTIONAL)
+				quality = SPAN_NOTICE("exceptionally made, and will likely last for a very long time and is suitable for most, if not all purposes.")
+	desc_comp += " It is [quality]"
 	return ..(user, distance, "", desc_comp)
 
 /obj/item/attack_hand(mob/user as mob)
