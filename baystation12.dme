@@ -1228,6 +1228,7 @@
 #include "code\modules\ad_astra\crafting_stations\crafting_station_helpers.dm"
 #include "code\modules\ad_astra\crafting_stations\crafting_types.dm"
 #include "code\modules\ad_astra\parts\parts.dm"
+#include "code\modules\ad_astra\toolsystem\toolsys.dm"
 #include "code\modules\admin\admin.dm"
 #include "code\modules\admin\admin_attack_log.dm"
 #include "code\modules\admin\admin_investigate.dm"

@@ -1,4 +1,4 @@
-/obj/item/weapon/weldingtool
+/obj/item/weapon/tool/weldingtool
 	name = "welding tool"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
@@ -21,7 +21,7 @@
 	var/welding_resource = "welding fuel"
 	var/obj/item/weapon/welder_tank/tank = /obj/item/weapon/welder_tank // where the fuel is stored
 
-/obj/item/weapon/weldingtool/Initialize()
+/obj/item/weapon/tool/weldingtool/Initialize()
 	if(ispath(tank))
 		tank = new tank
 		w_class = tank.size_in_use
@@ -32,7 +32,7 @@
 
 	. = ..()
 
-/obj/item/weapon/weldingtool/Destroy()
+/obj/item/weapon/tool/weldingtool/Destroy()
 	if(welding)
 		STOP_PROCESSING(SSobj, src)
 
@@ -40,14 +40,14 @@
 
 	return ..()
 
-/obj/item/weapon/weldingtool/examine(mob/user, distance)
+/obj/item/weapon/tool/weldingtool/examine(mob/user, distance)
 	. = ..()
 	if (!tank)
 		to_chat(user, "There is no [welding_resource] source attached.")
 	else
 		to_chat(user, (distance <= 1 ? "It has [get_fuel()] [welding_resource] remaining. " : "") + "[tank] is attached.")
 
-/obj/item/weapon/weldingtool/MouseDrop(atom/over)
+/obj/item/weapon/tool/weldingtool/MouseDrop(atom/over)
 	if(!CanMouseDrop(over, usr))
 		return
 
@@ -63,7 +63,7 @@
 
 	..()
 
-/obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/tool/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
 	if(welding)
 		to_chat(user, SPAN_DANGER("Stop welding first!"))
 		return
@@ -106,7 +106,7 @@
 	..()
 
 
-/obj/item/weapon/weldingtool/attack_hand(mob/user as mob)
+/obj/item/weapon/tool/weldingtool/attack_hand(mob/user as mob)
 	if (tank && user.get_inactive_hand() == src)
 		if (!welding)
 			user.visible_message("[user] removes \the [tank] from \the [src].", "You remove \the [tank] from \the [src].")
@@ -121,16 +121,16 @@
 	else
 		..()
 
-/obj/item/weapon/weldingtool/water_act()
+/obj/item/weapon/tool/weldingtool/water_act()
 	if(welding && !waterproof)
 		setWelding(0)
 
-/obj/item/weapon/weldingtool/Process()
+/obj/item/weapon/tool/weldingtool/Process()
 	if(welding)
 		if((!waterproof && submerged()) || !remove_fuel(0.05))
 			setWelding(0)
 
-/obj/item/weapon/weldingtool/afterattack(var/obj/O, var/mob/user, proximity)
+/obj/item/weapon/tool/weldingtool/afterattack(var/obj/O, var/mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -158,16 +158,16 @@
 			location.hotspot_expose(700, 50, 1)
 	return
 
-/obj/item/weapon/weldingtool/attack_self(mob/user as mob)
+/obj/item/weapon/tool/weldingtool/attack_self(mob/user as mob)
 	setWelding(!welding, usr)
 	return
 
 //Returns the amount of fuel in the welder
-/obj/item/weapon/weldingtool/proc/get_fuel()
+/obj/item/weapon/tool/weldingtool/proc/get_fuel()
 	return tank ? tank.reagents.get_reagent_amount(/datum/reagent/fuel) : 0
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weapon/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weapon/tool/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
@@ -180,7 +180,7 @@
 			to_chat(M, SPAN_NOTICE("You need more [welding_resource] to complete this task."))
 		return 0
 
-/obj/item/weapon/weldingtool/proc/burn_fuel(var/amount)
+/obj/item/weapon/tool/weldingtool/proc/burn_fuel(var/amount)
 	if(!tank)
 		return
 
@@ -204,15 +204,15 @@
 			location.hotspot_expose(700, 5)
 
 //Returns whether or not the welding tool is currently on.
-/obj/item/weapon/weldingtool/proc/isOn()
+/obj/item/weapon/tool/weldingtool/proc/isOn()
 	return src.welding
 
-/obj/item/weapon/weldingtool/get_storage_cost()
+/obj/item/weapon/tool/weldingtool/get_storage_cost()
 	if(isOn())
 		return ITEM_SIZE_NO_CONTAINER
 	return ..()
 
-/obj/item/weapon/weldingtool/on_update_icon()
+/obj/item/weapon/tool/weldingtool/on_update_icon()
 	..()
 	overlays.Cut()
 	if(tank)
@@ -227,7 +227,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weapon/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weapon/tool/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
 	if (!status)
 		return
 
@@ -244,7 +244,7 @@
 				to_chat(M, SPAN_NOTICE("You switch the [src] on."))
 			else if(T)
 				T.visible_message(SPAN_WARNING("\The [src] turns on."))
-			if (istype(src, /obj/item/weapon/weldingtool/electric))
+			if (istype(src, /obj/item/weapon/tool/weldingtool/electric))
 				src.force = 11
 				src.damtype = ELECTROCUTE
 			else
@@ -264,7 +264,7 @@
 			to_chat(M, SPAN_NOTICE("You switch \the [src] off."))
 		else if(T)
 			T.visible_message(SPAN_WARNING("\The [src] turns off."))
-		if (istype(src, /obj/item/weapon/weldingtool/electric))
+		if (istype(src, /obj/item/weapon/tool/weldingtool/electric))
 			src.force = initial(force)
 		else
 			src.force = tank.unlit_force
@@ -272,7 +272,7 @@
 		src.welding = 0
 		update_icon()
 
-/obj/item/weapon/weldingtool/attack(mob/living/M, mob/living/user, target_zone)
+/obj/item/weapon/tool/weldingtool/attack(mob/living/M, mob/living/user, target_zone)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[target_zone]
@@ -294,16 +294,16 @@
 	else
 		return ..()
 
-/obj/item/weapon/weldingtool/mini
+/obj/item/weapon/tool/weldingtool/mini
 	tank = /obj/item/weapon/welder_tank/mini
 
-/obj/item/weapon/weldingtool/largetank
+/obj/item/weapon/tool/weldingtool/largetank
 	tank = /obj/item/weapon/welder_tank/large
 
-/obj/item/weapon/weldingtool/hugetank
+/obj/item/weapon/tool/weldingtool/hugetank
 	tank = /obj/item/weapon/welder_tank/huge
 
-/obj/item/weapon/weldingtool/experimental
+/obj/item/weapon/tool/weldingtool/experimental
 	tank = /obj/item/weapon/welder_tank/experimental
 
 ///////////////////////

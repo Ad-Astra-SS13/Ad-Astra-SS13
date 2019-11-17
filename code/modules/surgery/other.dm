@@ -97,7 +97,7 @@
 /decl/surgery_step/hardsuit
 	name = "Remove hardsuit"
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 80,
+		/obj/item/weapon/tool/weldingtool = 80,
 		/obj/item/weapon/circular_saw = 60,
 		/obj/item/psychic_power/psiblade/master/grand/paramount = 100,
 		/obj/item/psychic_power/psiblade = 75,
@@ -113,13 +113,13 @@
 	return TRUE
 
 /decl/surgery_step/hardsuit/get_skill_reqs(mob/living/user, mob/living/carbon/human/target, obj/item/tool)
-	return list(SKILL_EVA = SKILL_BASIC) 
+	return list(SKILL_EVA = SKILL_BASIC)
 
 /decl/surgery_step/hardsuit/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
 		return FALSE
 	if(isWelder(tool))
-		var/obj/item/weapon/weldingtool/welder = tool
+		var/obj/item/weapon/tool/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return FALSE
 	return (target_zone == BP_CHEST) && istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)
@@ -169,7 +169,7 @@
 		return affected
 
 /decl/surgery_step/sterilize/get_skill_reqs(mob/living/user, mob/living/carbon/human/target, obj/item/tool)
-	return list(SKILL_MEDICAL = SKILL_BASIC) 
+	return list(SKILL_MEDICAL = SKILL_BASIC)
 
 /decl/surgery_step/sterilize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

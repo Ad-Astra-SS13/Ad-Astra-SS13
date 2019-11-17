@@ -418,7 +418,7 @@
 			if(AM.loc.y != src.loc.y-1) return
 		if(WEST)
 			if(AM.loc.x != src.loc.x-1) return
-			
+
 	var/mob/living/L = AM
 	if (istype(L) && L.ckey)
 		log_and_message_admins("has flushed themselves down \the [src].", L)
@@ -470,19 +470,19 @@
 	if(isScrewdriver(I))
 		if(c_mode==0)
 			c_mode=1
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src.loc, I.toolsound, 50, 1)
 			to_chat(user, "You remove the screws around the power connection.")
 			return
 		else if(c_mode==1)
 			c_mode=0
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src.loc, I.toolsound, 50, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 			return
 	else if(isWelder(I) && c_mode==1)
-		var/obj/item/weapon/weldingtool/W = I
+		var/obj/item/weapon/tool/weldingtool/W = I
 		if(W.remove_fuel(1,user))
 			to_chat(user, "You start slicing the floorweld off the delivery chute.")
-			if(do_after(user,20, src))
+			if(do_after(user,W.GetUseSpeed(user, -3), src))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				if(!src || !W.isOn()) return
 				to_chat(user, "You sliced the floorweld off the delivery chute.")

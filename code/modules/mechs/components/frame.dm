@@ -144,7 +144,7 @@
 		// We're all done. Finalize the exosuit and pass the frame to the new system.
 		var/mob/living/exosuit/M = new(get_turf(src), src)
 		visible_message(SPAN_NOTICE("\The [user] finishes off \the [M]."))
-		playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+		playsound(user.loc, thing.toolsound, 100, 1)
 
 		arms = null
 		legs = null
@@ -190,7 +190,7 @@
 			return
 
 		visible_message("\The [user] [(is_wired == FRAME_WIRED_ADJUSTED) ? "snips some of" : "neatens"] the wiring in \the [src].")
-		playsound(user.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(user.loc, thing.toolsound, 100, 1)
 		is_wired = (is_wired == FRAME_WIRED_ADJUSTED) ? FRAME_WIRED : FRAME_WIRED_ADJUSTED
 	// Installing metal.
 	else if(istype(thing, /obj/item/stack/material))
@@ -231,11 +231,11 @@
 			return
 
 		visible_message("\The [user] [(is_reinforced == 2) ? "unsecures" : "secures"] the metal reinforcement inside \the [src].")
-		playsound(user.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(user.loc, thing.toolsound, 100, 1)
 		is_reinforced = (is_reinforced == FRAME_REINFORCED_SECURE) ? FRAME_REINFORCED : FRAME_REINFORCED_SECURE
 	// Welding metal.
 	else if(isWelder(thing))
-		var/obj/item/weapon/weldingtool/WT = thing
+		var/obj/item/weapon/tool/weldingtool/WT = thing
 		if(!is_reinforced)
 			to_chat(user, SPAN_WARNING("There is no metal to secure inside \the [src]."))
 			return
@@ -249,7 +249,7 @@
 
 			var/last_reinforced_state = is_reinforced
 			visible_message("\The [user] begins welding the metal reinforcement inside \the [src].")
-			if(!do_after(user, 20 * user.skill_delay_mult(SKILL_DEVICES)) || last_reinforced_state != is_reinforced)
+			if(!do_after(user, WT.GetUseSpeed(user, 20) * user.skill_delay_mult(SKILL_DEVICES)) || last_reinforced_state != is_reinforced)
 				return
 
 			visible_message("\The [user] [(is_reinforced == FRAME_REINFORCED_WELDED) ? "unwelds the reinforcement from" : "welds the reinforcement into"] \the [src].")
@@ -263,7 +263,7 @@
 		if(arms)
 			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
 			return
-		if(install_component(thing, user)) 
+		if(install_component(thing, user))
 			if(arms)
 				thing.dropInto(loc)
 				return
@@ -272,7 +272,7 @@
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
 			return
-		if(install_component(thing, user)) 
+		if(install_component(thing, user))
 			if(legs)
 				thing.dropInto(loc)
 				return
@@ -281,7 +281,7 @@
 		if(head)
 			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))
 			return
-		if(install_component(thing, user)) 
+		if(install_component(thing, user))
 			if(head)
 				thing.dropInto(loc)
 				return

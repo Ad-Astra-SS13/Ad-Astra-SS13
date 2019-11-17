@@ -58,7 +58,7 @@
 	name = "Set bone"
 	allowed_tools = list(
 		/obj/item/weapon/bonesetter = 100,
-		/obj/item/weapon/wrench = 75
+		/obj/item/weapon/tool/wrench = 75
 	)
 	min_duration = 60
 	max_duration = 70

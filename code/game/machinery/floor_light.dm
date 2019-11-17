@@ -30,12 +30,12 @@ var/list/floor_light_cache = list()
 			queue_icon_update()
 		visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
 	else if(isWelder(W) && (damaged || (stat & BROKEN)))
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
 			return
 		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-		if(!do_after(user, 20, src))
+		if(!do_after(user, W.GetUseSpeed(user, -3), src))
 			return
 		if(!src || !WT.isOn())
 			return
@@ -43,7 +43,7 @@ var/list/floor_light_cache = list()
 		set_broken(FALSE)
 		damaged = null
 	else if(isWrench(W))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		playsound(src.loc, W.toolsound, 75, 1)
 		to_chat(user, "<span class='notice'>You dismantle the floor light.</span>")
 		new /obj/item/stack/material/steel(src.loc, 1)
 		new /obj/item/stack/material/glass(src.loc, 1)

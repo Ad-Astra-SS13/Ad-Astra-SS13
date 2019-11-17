@@ -21,10 +21,10 @@
 /obj/item/weapon/storage/toolbox/emergency
 	name = "emergency toolbox"
 	startswith = list(
-		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/tool/crowbar/red,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/device/radio,
-		/obj/item/weapon/weldingtool/mini,
+		/obj/item/weapon/tool/weldingtool/mini,
 		/obj/item/weapon/welder_tank/mini
 	)
 
@@ -39,14 +39,14 @@
 	desc = "Bright blue toolboxes like these are one of the most common sights in maintenance corridors on virtually every ship in the galaxy."
 	icon_state = "blue"
 	item_state = "toolbox_blue"
-	startswith = list(/obj/item/weapon/screwdriver, /obj/item/weapon/wrench, /obj/item/weapon/weldingtool, /obj/item/weapon/crowbar, /obj/item/device/scanner/gas, /obj/item/weapon/wirecutters)
+	startswith = list(/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/wrench, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/crowbar, /obj/item/device/scanner/gas, /obj/item/weapon/tool/wirecutters)
 
 /obj/item/weapon/storage/toolbox/electrical
 	name = "electrical toolbox"
 	desc = "Bright yellow toolboxes like these are one of the most common sights in maintenance corridors on virtually every ship in the galaxy."
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
-	startswith = list(/obj/item/weapon/screwdriver, /obj/item/weapon/wirecutters, /obj/item/device/t_scanner, /obj/item/weapon/crowbar)
+	startswith = list(/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/wirecutters, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar)
 
 /obj/item/weapon/storage/toolbox/electrical/Initialize()
 	. = ..()
@@ -64,4 +64,4 @@
 	item_state = "toolbox_syndi"
 	origin_tech = list(TECH_COMBAT = 1, TECH_ESOTERIC = 1)
 	attack_cooldown = 10
-	startswith = list(/obj/item/clothing/gloves/insulated, /obj/item/weapon/screwdriver, /obj/item/weapon/wrench, /obj/item/weapon/weldingtool, /obj/item/weapon/crowbar, /obj/item/weapon/wirecutters, /obj/item/device/multitool)
+	startswith = list(/obj/item/clothing/gloves/insulated, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/wrench, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/wirecutters, /obj/item/device/multitool)

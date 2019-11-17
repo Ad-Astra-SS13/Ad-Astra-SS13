@@ -120,8 +120,8 @@
 			to_chat(user, "<span class='notice'>You can't dismantle \the [src] with these bees inside.</span>")
 			return
 		to_chat(user, "<span class='notice'>You start dismantling \the [src]...</span>")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 30, src))
+		playsound(loc, I.toolsound, 50, 1)
+		if(do_after(user, I.GetUseSpeed(user, -2), src))
 			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/beehive_assembly(loc)
 			qdel(src)
@@ -183,7 +183,7 @@
 /obj/machinery/honey_extractor/cannot_transition_to(state_path, mob/user)
 	if(processing)
 		return SPAN_NOTICE("You must wait for \the [src] to finish first!")
-	return ..()	
+	return ..()
 
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(processing)
@@ -309,4 +309,4 @@ var/global/list/datum/stack_recipe/wax_recipes = list(
 	new /obj/item/honey_frame(src)
 	new /obj/item/honey_frame(src)
 	new /obj/item/bee_pack(src)
-	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/tool/crowbar(src)

@@ -826,7 +826,7 @@
 
 			if (wiresexposed && isWirecutter(W))
 				user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+				playsound(src.loc, W.toolsound, 50, 1)
 				new/obj/item/stack/cable_coil(get_turf(src), 5)
 				buildstage = 1
 				update_icon()
@@ -859,7 +859,7 @@
 			else if(isCrowbar(W))
 				to_chat(user, "You start prying out the circuit.")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-				if(do_after(user,20) && buildstage == 1)
+				if(do_after(user,W.GetUseSpeed(user)) && buildstage == 1)
 					to_chat(user, "You pry out the circuit!")
 					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
 					circuit.dropInto(user.loc)
@@ -877,7 +877,7 @@
 			else if(isWrench(W))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				new /obj/item/frame/air_alarm(get_turf(user))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, W.toolsound, 50, 1)
 				qdel(src)
 
 	return ..()
@@ -1010,7 +1010,7 @@ FIRE ALARM
 				else if(isWirecutter(W))
 					user.visible_message("<span class='notice'>\The [user] has cut the wires inside \the [src]!</span>", "<span class='notice'>You have cut the wires inside \the [src].</span>")
 					new/obj/item/stack/cable_coil(get_turf(src), 5)
-					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
+					playsound(src.loc, W.toolsound, 50, 1)
 					buildstage = 1
 					update_icon()
 			if(1)
@@ -1027,7 +1027,7 @@ FIRE ALARM
 				else if(isCrowbar(W))
 					to_chat(user, "You start prying out the circuit.")
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-					if (do_after(user,20))
+					if (do_after(user,W.GetUseSpeed(user)))
 						to_chat(user, "You pry out the circuit!")
 						var/obj/item/weapon/firealarm_electronics/circuit = new /obj/item/weapon/firealarm_electronics()
 						circuit.dropInto(user.loc)
@@ -1043,7 +1043,7 @@ FIRE ALARM
 				else if(isWrench(W))
 					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					new /obj/item/frame/fire_alarm(get_turf(user))
-					playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+					playsound(src.loc, W.toolsound, 50, 1)
 					qdel(src)
 		return
 

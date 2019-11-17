@@ -117,7 +117,7 @@ var/list/global/tank_gauge_cache = list()
 		if(wired && proxyassembly.assembly)
 
 			to_chat(user, "<span class='notice'>You carefully begin clipping the wires that attach to the tank.</span>")
-			if(do_after(user, 100,src))
+			if(do_after(user, W.GetUseSpeed(user),src))
 				wired = 0
 				to_chat(user, "<span class='notice'>You cut the wire and remove the device.</span>")
 
@@ -163,11 +163,11 @@ var/list/global/tank_gauge_cache = list()
 			to_chat(user, "<span class='notice'>You need to wire the device up first.</span>")
 
 	if(isWelder(W))
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1,user))
 			if(!valve_welded)
 				to_chat(user, "<span class='notice'>You begin welding the \the [src] emergency pressure relief valve.</span>")
-				if(do_after(user, 40,src))
+				if(do_after(user, WT.GetUseSpeed(user, -1),src))
 					to_chat(user, "<span class='notice'>You carefully weld \the [src] emergency pressure relief valve shut.</span><span class='warning'> \The [src] may now rupture under pressure!</span>")
 					valve_welded = 1
 					leaking = 0

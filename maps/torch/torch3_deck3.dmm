@@ -874,7 +874,7 @@
 	},
 /obj/effect/floor_decal/corner/green/mono,
 /obj/structure/closet/crate/hydroponics/beekeeping,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/monotile,
 /area/hydroponics)
 "cf" = (
@@ -15471,7 +15471,7 @@
 "Jg" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/machinery/light_switch{
 	pixel_x = 6;
 	pixel_y = -24

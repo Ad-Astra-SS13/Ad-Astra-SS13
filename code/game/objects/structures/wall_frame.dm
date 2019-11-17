@@ -76,9 +76,9 @@
 			else if(istype(S, /obj/structure/grille))
 				to_chat(user, "<span class='notice'>There is still a grille on the low wall!</span>")
 				return
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(src.loc, W.toolsound, 100, 1)
 		to_chat(user, "<span class='notice'>Now disassembling the low wall...</span>")
-		if(do_after(user, 40,src))
+		if(do_after(user, W.GetUseSpeed(user),src))
 			to_chat(user, "<span class='notice'>You dissasembled the low wall!</span>")
 			dismantle()
 

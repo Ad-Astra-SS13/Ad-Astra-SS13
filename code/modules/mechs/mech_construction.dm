@@ -93,7 +93,7 @@
 		ME.installed(src)
 		GLOB.destroyed_event.register(system, src, .proc/forget_module)
 
-	
+
 
 	system.forceMove(src)
 	hardpoints[system_hardpoint] = system

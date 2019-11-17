@@ -7138,7 +7138,7 @@
 	name = "plastic table frame"
 	},
 /obj/item/device/binoculars,
-/obj/item/weapon/crowbar/prybar,
+/obj/item/weapon/tool/crowbar/prybar,
 /obj/random/maintenance/solgov/clean,
 /obj/machinery/button/blast_door{
 	name = "Checkpoint Window Shutters";
@@ -12889,7 +12889,7 @@
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/item/device/radio,
-/obj/item/weapon/crowbar/prybar,
+/obj/item/weapon/tool/crowbar/prybar,
 /obj/item/device/binoculars,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/crew_quarters/heads/office/cos)

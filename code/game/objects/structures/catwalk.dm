@@ -78,7 +78,7 @@
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
 	if(isWelder(C))
-		var/obj/item/weapon/weldingtool/WT = C
+		var/obj/item/weapon/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			deconstruct(user)
 		return

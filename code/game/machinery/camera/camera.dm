@@ -178,7 +178,7 @@
 		panel_open = !panel_open
 		user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
 		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(src.loc, W.toolsound, 50, 1)
 
 	else if((isWirecutter(W) || isMultitool(W)) && panel_open)
 		return wires.Interact(user)
@@ -374,7 +374,7 @@
 
 	return null
 
-/obj/machinery/camera/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
+/obj/machinery/camera/proc/weld(var/obj/item/weapon/tool/weldingtool/WT, var/mob/user)
 
 	if(busy)
 		return 0

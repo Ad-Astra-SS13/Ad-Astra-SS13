@@ -29,12 +29,12 @@
 				return
 			to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
 			make_plating(1)
-			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
+			playsound(src, C.toolsound, 80, 1)
 			return
 		else if(isWrench(C) && (flooring.flags & TURF_REMOVE_WRENCH))
 			to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
 			make_plating(1)
-			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
+			playsound(src, C.toolsound, 80, 1)
 			return
 		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
 			to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
@@ -92,7 +92,7 @@
 				var/turf/T = GetBelow(src)
 				if(T)
 					T.visible_message("<span class='warning'>The ceiling above looks as if it's being pried off.</span>")
-				if(do_after(user, 10 SECONDS))
+				if(do_after(user, C.GetUseSpeed(user)))
 					if(!broken && !burnt || !(is_plating()))return
 					visible_message("<span class='warning'>[user] has pried off the damaged plating.</span>")
 					new /obj/item/stack/tile/floor(src)
@@ -104,7 +104,7 @@
 				return
 			return
 		else if(isWelder(C))
-			var/obj/item/weapon/weldingtool/welder = C
+			var/obj/item/weapon/tool/weldingtool/welder = C
 			if(welder.isOn() && (is_plating()))
 				if(broken || burnt)
 					if(welder.remove_fuel(0, user))
@@ -118,7 +118,7 @@
 					if(welder.remove_fuel(0, user))
 						playsound(src, 'sound/items/Welder.ogg', 80, 1)
 						visible_message("<span class='notice'>[user] has started melting the plating's reinforcements!</span>")
-						if(do_after(user, 5 SECONDS) && welder.isOn() && welder_melt())
+						if(do_after(user, welder.GetUseSpeed(user, 5)) && welder.isOn() && welder_melt())
 							visible_message("<span class='warning'>[user] has melted the plating's reinforcements! It should be possible to pry it off.</span>")
 							playsound(src, 'sound/items/Welder.ogg', 80, 1)
 					return

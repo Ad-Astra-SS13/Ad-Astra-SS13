@@ -89,7 +89,7 @@
 	if(isScrewdriver(W))
 		if(!panel)
 			user.visible_message(SPAN_NOTICE("\The [user] re-attaches \the [src]'s front panel with \the [W]."), SPAN_NOTICE("You re-attach \the [src]'s front panel."))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src.loc, W.toolsound, 50, 1)
 			panel = TRUE
 			return TRUE
 		if(!broken)
@@ -97,7 +97,7 @@
 			return TRUE
 		else if(panel)
 			user.visible_message(SPAN_NOTICE("\The [user] unhinges \the [src]'s front panel with \the [W]."), SPAN_NOTICE("You unhinge \the [src]'s front panel."))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src.loc, W.toolsound, 50, 1)
 			panel = FALSE
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/S = W
@@ -144,7 +144,7 @@
 	frequency = Clamp(frequency, MIN_FREQUENCY, MAX_FREQUENCY)
 
 	user.visible_message(SPAN_NOTICE("\The [user] adjusts \the [src]'s player head."), SPAN_NOTICE("You adjust \the [src]'s player head."))
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(src.loc, W.toolsound, 50, 1)
 
 	if(frequency > 1.0)
 		to_chat(user, SPAN_NOTICE("\The [src] should be playing faster than usual."))

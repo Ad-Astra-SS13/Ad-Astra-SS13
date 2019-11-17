@@ -479,7 +479,7 @@
 "aS" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/crowbar/brace_jack,
+/obj/item/weapon/tool/crowbar/brace_jack,
 /obj/item/clothing/gloves/insulated,
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
@@ -1575,9 +1575,9 @@
 /obj/item/device/radio,
 /obj/item/device/radio,
 /obj/item/weapon/storage/box/bodybags,
-/obj/item/weapon/crowbar/prybar,
-/obj/item/weapon/crowbar/prybar,
-/obj/item/weapon/crowbar/prybar,
+/obj/item/weapon/tool/crowbar/prybar,
+/obj/item/weapon/tool/crowbar/prybar,
+/obj/item/weapon/tool/crowbar/prybar,
 /turf/simulated/floor/tiled/techfloor,
 /area/storage/medical)
 "db" = (

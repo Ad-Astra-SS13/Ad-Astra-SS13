@@ -38,7 +38,7 @@
 				return
 
 			if(isScrewdriver(W))
-				if (do_after(user, 20, src))
+				if (do_after(user, W.GetUseSpeed(user), src))
 					src.open =! src.open
 					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (src.open ? "open" : "close")))
 				return
@@ -120,8 +120,8 @@
 					src.attack_self(M)
 				return
 		return
-		
-	
+
+
 /obj/item/weapon/storage/secure/examine(mob/user, distance)
 	. = ..()
 	if(distance <= 1)

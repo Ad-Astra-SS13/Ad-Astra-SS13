@@ -267,7 +267,7 @@
 			src.MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
 			return 0
 		if(isWelder(W))
-			var/obj/item/weapon/weldingtool/WT = W
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if(WT.remove_fuel(0,user))
 				slice_into_parts(WT, user)
 				return
@@ -305,7 +305,7 @@
 	else if(istype(W, /obj/item/stack/package_wrap))
 		return
 	else if(isWelder(W) && (setup & CLOSET_CAN_BE_WELDED))
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
 			if(!WT.isOn())
 				return

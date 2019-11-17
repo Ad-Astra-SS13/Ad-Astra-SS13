@@ -6,11 +6,11 @@
 		NETWORK_ENGINEERING
 	)
 	equipment = list(
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
 		/obj/item/device/multitool,
 		/obj/item/device/lightreplacer,
 		/obj/item/weapon/gripper,
@@ -96,7 +96,7 @@
 		))
 		var/obj/item/stack/stack = locate(thing) in equipment
 		LAZYDISTINCTADD(stack.synths, wood)
-	
+
 	var/obj/item/stack/cable_coil/cyborg/C = locate() in equipment
 	C.synths = list(wire)
 

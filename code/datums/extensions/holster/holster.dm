@@ -75,8 +75,7 @@
 			sound_vol = 50
 			if(istype(holstered, /obj/item/weapon/gun))
 				var/obj/item/weapon/gun/G = holstered
-				G.check_accidents(user)
-				if(G.safety() && !user.skill_fail_prob(SKILL_WEAPONS, 100, SKILL_EXPERT, 0.5)) //Experienced shooter will disable safety before shooting.
+				if(G.safety() && !user.skill_fail_prob(SKILL_WEAPONS, 100, SKILL_ADEPT, 0.5)) //Experienced shooter will disable safety before shooting.// this is kind of stupid any retard with gun training will remember to take the safety off
 					G.toggle_safety(user)
 			usr.visible_message(
 				"<span class='danger'>\The [user] draws \the [holstered], ready to go!</span>",

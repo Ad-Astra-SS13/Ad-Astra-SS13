@@ -234,15 +234,15 @@
 		if(reinf_material && construction_state >= 1)
 			construction_state = 3 - construction_state
 			update_nearby_icons()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(loc, W.toolsound, 75, 1)
 			to_chat(user, (construction_state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>"))
 		else if(reinf_material && construction_state == 0)
 			set_anchored(!anchored)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(loc, W.toolsound, 75, 1)
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>"))
 		else if(!reinf_material)
 			set_anchored(!anchored)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(loc, W.toolsound, 75, 1)
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
 	else if(isCrowbar(W) && reinf_material && construction_state <= 1)
 		construction_state = 1 - construction_state
@@ -252,7 +252,7 @@
 		if(!material.stack_type)
 			to_chat(user, "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>")
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src.loc, W.toolsound, 75, 1)
 			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
 			var/obj/item/stack/material/S = material.place_sheet(loc, is_fulltile() ? 4 : 1)
 			if(S && reinf_material)
@@ -517,7 +517,7 @@
 			src.id = t
 			to_chat(user, "<span class='notice'>The new ID of the button is [id]</span>")
 		return
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		new /obj/item/frame/light_switch/windowtint(user.loc, 1)
 		qdel(src)
 

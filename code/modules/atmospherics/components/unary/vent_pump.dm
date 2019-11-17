@@ -337,7 +337,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
 	if(isWelder(W))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 
 		if(!WT.isOn())
 			to_chat(user, "<span class='notice'>The welding tool needs to be on to start this task.</span>")
@@ -350,7 +350,7 @@
 		to_chat(user, "<span class='notice'>Now welding \the [src].</span>")
 		playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 
-		if(!do_after(user, 20, src))
+		if(!do_after(user, W.GetUseSpeed(user, -2), src))
 			to_chat(user, "<span class='notice'>You must remain close to finish this task.</span>")
 			return 1
 
@@ -395,9 +395,9 @@
 			to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
 			add_fingerprint(user)
 			return 1
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, W.toolsound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-		if (do_after(user, 40, src))
+		if (do_after(user, W.GetUseSpeed(user), src))
 			user.visible_message( \
 				"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 				"<span class='notice'>You have unfastened \the [src].</span>", \
@@ -410,7 +410,7 @@
 		popup.open()
 		return
 	else
-		return ..()	
+		return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/get_console_data()
 	. = list()
@@ -433,7 +433,7 @@
 		to_chat(user, "<span class='notice'>The multitool emits a short beep confirming the change.</span>")
 		queue_icon_update() //force the icon to refresh after changing directional mode.
 		return TOPIC_REFRESH
-	if(href_list["settag"])		
+	if(href_list["settag"])
 		var/t = sanitizeSafe(input(user, "Enter the ID tag for [src.name]", src.name, id_tag), MAX_NAME_LEN)
 		if(t && CanInteract(user, state))
 			id_tag = t

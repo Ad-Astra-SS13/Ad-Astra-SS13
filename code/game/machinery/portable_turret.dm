@@ -281,7 +281,7 @@ var/list/turret_icons
 			//If the turret is destroyed, you can remove it with a crowbar to
 			//try and salvage its components
 			to_chat(user, "<span class='notice'>You begin prying the metal coverings off.</span>")
-			if(do_after(user, 20, src))
+			if(do_after(user, I.GetUseSpeed(user), src))
 				if(prob(70))
 					to_chat(user, "<span class='notice'>You remove the turret and salvage some components.</span>")
 					if(installation)
@@ -316,12 +316,12 @@ var/list/turret_icons
 		if(do_after(user, 50, src))
 			//This code handles moving the turret around. After all, it's a portable turret!
 			if(!anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.toolsound, 100, 1)
 				anchored = 1
 				update_icon()
 				to_chat(user, "<span class='notice'>You secure the exterior bolts on the turret.</span>")
 			else if(anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.toolsound, 100, 1)
 				anchored = 0
 				to_chat(user, "<span class='notice'>You unsecure the exterior bolts on the turret.</span>")
 				update_icon()
@@ -673,7 +673,7 @@ var/list/turret_icons
 	switch(build_step)
 		if(0)	//first step
 			if(isWrench(I) && !anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+				playsound(loc, I.toolsound, 100, 1)
 				to_chat(user, "<span class='notice'>You secure the external bolts.</span>")
 				anchored = 1
 				build_step = 1
@@ -697,8 +697,8 @@ var/list/turret_icons
 					to_chat(user, "<span class='warning'>You need two sheets of metal to continue construction.</span>")
 				return
 
-			else if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+			else if(istype(I, /obj/item/weapon/tool/wrench))
+				playsound(loc, I.toolsound, 75, 1)
 				to_chat(user, "<span class='notice'>You unfasten the external bolts.</span>")
 				anchored = 0
 				build_step = 0
@@ -706,14 +706,14 @@ var/list/turret_icons
 
 
 		if(2)
-			if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+			if(istype(I, /obj/item/weapon/tool/wrench))
+				playsound(loc, I.toolsound, 100, 1)
 				to_chat(user, "<span class='notice'>You bolt the metal armor into place.</span>")
 				build_step = 3
 				return
 
 			else if(isWelder(I))
-				var/obj/item/weapon/weldingtool/WT = I
+				var/obj/item/weapon/tool/weldingtool/WT = I
 				if(!WT.isOn())
 					return
 				if(WT.get_fuel() < 5) //uses up 5 fuel.
@@ -721,7 +721,7 @@ var/list/turret_icons
 					return
 
 				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 20, src))
+				if(do_after(user, I.GetUseSpeed(user, -3), src))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
 					to_chat(user, "You remove the turret's interior metal armor.")
@@ -747,8 +747,8 @@ var/list/turret_icons
 				qdel(I) //delete the gun :(
 				return
 
-			else if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+			else if(istype(I, /obj/item/weapon/tool/wrench))
+				playsound(loc, I.toolsound, 100, 1)
 				to_chat(user, "<span class='notice'>You remove the turret's metal armor bolts.</span>")
 				build_step = 2
 				return
@@ -767,7 +767,7 @@ var/list/turret_icons
 
 		if(5)
 			if(isScrewdriver(I))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
+				playsound(loc, I.toolsound, 100, 1)
 				build_step = 6
 				to_chat(user, "<span class='notice'>You close the internal access hatch.</span>")
 				return
@@ -784,21 +784,21 @@ var/list/turret_icons
 					to_chat(user, "<span class='warning'>You need two sheets of metal to continue construction.</span>")
 				return
 
-			else if(istype(I, /obj/item/weapon/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
+			else if(istype(I, /obj/item/weapon/tool/screwdriver))
+				playsound(loc, I.toolsound, 100, 1)
 				build_step = 5
 				to_chat(user, "<span class='notice'>You open the internal access hatch.</span>")
 				return
 
 		if(7)
 			if(isWelder(I))
-				var/obj/item/weapon/weldingtool/WT = I
+				var/obj/item/weapon/tool/weldingtool/WT = I
 				if(!WT.isOn()) return
 				if(WT.get_fuel() < 5)
 					to_chat(user, "<span class='notice'>You need more fuel to complete this task.</span>")
 
 				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 30, src))
+				if(do_after(user, WT.GetUseSpeed(user, -2), src))
 					if(!src || !WT.remove_fuel(5, user))
 						return
 					build_step = 8

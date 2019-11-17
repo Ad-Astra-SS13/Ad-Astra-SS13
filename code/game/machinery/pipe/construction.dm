@@ -15,7 +15,7 @@ Buildable meters
 	item_state = "buildpipe"
 	w_class = ITEM_SIZE_NORMAL
 	level = 2
-	obj_flags = OBJ_FLAG_ROTATABLE 
+	obj_flags = OBJ_FLAG_ROTATABLE
 	dir = SOUTH
 	var/constructed_path = /obj/machinery/atmospherics/pipe/simple/hidden
 	var/pipe_class = PIPE_CLASS_BINARY
@@ -76,7 +76,7 @@ Buildable meters
 		to_chat(usr, pipefailtext)
 		return 1
 	P.build_network()
-	if(P.node)		
+	if(P.node)
 		P.node.atmos_init()
 		P.node.build_network()
 	return 0
@@ -99,8 +99,8 @@ Buildable meters
 	P.atmos_init()
 	if (QDELETED(P))
 		to_chat(usr, pipefailtext)
-		return 1	
-	P.build_network()	
+		return 1
+	P.build_network()
 	if(P.node1)
 		P.node1.atmos_init()
 		P.node1.build_network()
@@ -177,7 +177,7 @@ Buildable meters
 		P.atmos_init()
 		P.build_network()
 
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src.loc, W.toolsound, 50, 1)
 	user.visible_message( \
 		"[user] fastens the [src].", \
 		"<span class='notice'>You have fastened the [src].</span>", \
@@ -222,14 +222,14 @@ Buildable meters
 
 	if(!isWrench(W))
 		return ..()
-	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))	
+	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
 		new /obj/machinery/meter/turf(loc)
 		to_chat(user, "<span class='notice'>You have fastened the meter to the [loc].</span>")
 	else
 		new/obj/machinery/meter(loc)
 		to_chat(user, "<span class='notice'>You have fastened the meter to the pipe.</span>")
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		
+	playsound(src.loc, W.toolsound, 50, 1)
+
 	qdel(src)
 
 /obj/item/air_sensor
@@ -249,6 +249,6 @@ Buildable meters
 	var/obj/machinery/air_sensor/sensor = new /obj/machinery/air_sensor(src.loc)
 	sensor.frequency = frequency
 	sensor.set_frequency(frequency)
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src.loc, W.toolsound, 50, 1)
 	to_chat(user, "<span class='notice'>You have fastened the [src].</span>")
 	qdel(src)

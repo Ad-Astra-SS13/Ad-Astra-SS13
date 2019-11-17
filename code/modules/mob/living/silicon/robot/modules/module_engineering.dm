@@ -8,7 +8,7 @@
 		NETWORK_ENGINEERING
 	)
 	subsystems = list(
-		/datum/nano_module/power_monitor, 
+		/datum/nano_module/power_monitor,
 		/datum/nano_module/supermatter_monitor
 	)
 	supported_upgrades = list(
@@ -25,11 +25,11 @@
 		/obj/item/device/flash,
 		/obj/item/borg/sight/meson,
 		/obj/item/weapon/extinguisher,
-		/obj/item/weapon/weldingtool/largetank,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/weldingtool/largetank,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
 		/obj/item/device/multitool,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/gas,

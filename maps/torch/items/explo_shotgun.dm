@@ -27,11 +27,11 @@
 		icon_state = "expshotgun[!!chambered]"
 	else
 		icon_state = "ghettexpshotgun[!!chambered]"
-	
+
 /obj/item/weapon/gun/projectile/shotgun/pump/exploration/Destroy()
 	QDEL_NULL(reinforced)
 	. = ..()
-	
+
 /obj/item/weapon/gun/projectile/shotgun/pump/exploration/free_fire()
 	var/my_z = get_z(src)
 	if(!GLOB.using_map.station_levels.Find(my_z))
@@ -49,7 +49,7 @@
 		return 1
 	if(reinforced && I.iswirecutter())
 		to_chat(user, SPAN_WARNING("You remove \the [reinforced] that was reinforcing \the [src]."))
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(src.loc, I.toolsound, 25, 1)
 		reinforced.dropInto(loc)
 		reinforced = null
 		explosion_chance = initial(explosion_chance)

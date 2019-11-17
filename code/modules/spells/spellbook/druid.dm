@@ -35,7 +35,7 @@
 				/obj/item/weapon/contract/apprentice = 				1
 				)
 	sacrifice_objects = list(/obj/item/seeds,
-							/obj/item/weapon/wirecutters/clippers,
+							/obj/item/weapon/tool/wirecutters/clippers,
 							/obj/item/device/scanner/plant,
 							/obj/item/weapon/material/hatchet,
 							/obj/item/weapon/material/minihoe)

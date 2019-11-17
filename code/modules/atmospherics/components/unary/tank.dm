@@ -53,17 +53,17 @@
 	if(istype(W, /obj/item/device/pipe_painter))
 		return
 
-	if(isWrench(W))		
+	if(isWrench(W))
 		if (air_contents.return_pressure() > 2*ONE_ATMOSPHERE)
 			to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
 			add_fingerprint(user)
 			return 1
 
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, W.toolsound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 
-		if (do_after(user, 40, src))
-			user.visible_message("<span class='notice'>\The [user] unfastens \the [src].</span>", "<span class='notice'>You have unfastened \the [src].</span>", "You hear a ratchet.")		
+		if (do_after(user, W.GetUseSpeed(user), src))
+			user.visible_message("<span class='notice'>\The [user] unfastens \the [src].</span>", "<span class='notice'>You have unfastened \the [src].</span>", "You hear a ratchet.")
 			new /obj/item/pipe/tank(loc, src)
 			qdel(src)
 
@@ -108,7 +108,7 @@
 	name =  "Pressure Tank"
 	desc = "A large vessel containing pressurized gas."
 	color =  PIPE_COLOR_WHITE
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL	
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL
 	w_class = ITEM_SIZE_HUGE
 	level = 1
 	dir = SOUTH

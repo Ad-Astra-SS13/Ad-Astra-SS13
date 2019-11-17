@@ -44,7 +44,7 @@
 		/obj/item/weapon/robot_harvester,
 		/obj/item/weapon/material/kitchen/rollingpin,
 		/obj/item/weapon/material/knife/kitchen,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/rsf,
 		/obj/item/weapon/reagent_containers/dropper/industrial,
 		/obj/item/weapon/flame/lighter/zippo,
@@ -106,7 +106,7 @@
 		/obj/item/weapon/stamp,
 		/obj/item/weapon/stamp/denied,
 		/obj/item/device/destTagger,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/stack/package_wrap/cyborg
 	)
 	emag = /obj/item/weapon/stamp/chameleon

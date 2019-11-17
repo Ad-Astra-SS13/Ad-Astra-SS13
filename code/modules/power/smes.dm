@@ -172,9 +172,9 @@
 		var/is_input_available = FALSE
 		for(var/obj/item/weapon/stock_parts/power/terminal/term in power_components)
 			if(!term.terminal || !term.terminal.powernet)
-				continue			
+				continue
 			is_input_available = TRUE
-			term.terminal.powernet.smes_demand += target_load		
+			term.terminal.powernet.smes_demand += target_load
 			term.terminal.powernet.inputting.Add(src)
 		if(!is_input_available)
 			target_load = 0 // We won't input any power without powernet connection.
@@ -235,7 +235,7 @@
 		return TRUE
 
 	if(isWelder(W))
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(!WT.isOn())
 			to_chat(user, "Turn on \the [WT] first!")
 			return TRUE

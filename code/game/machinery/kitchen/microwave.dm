@@ -39,7 +39,7 @@
 				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
 			)
-			if (do_after(user, 20, src))
+			if (do_after(user, O.GetUseSpeed(user), src))
 				user.visible_message( \
 					"<span class='notice'>\The [user] fixes part of the microwave.</span>", \
 					"<span class='notice'>You have fixed part of the microwave.</span>" \
@@ -50,7 +50,7 @@
 				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
 			)
-			if (do_after(user, 20, src))
+			if (do_after(user, O.GetUseSpeed(user), src))
 				user.visible_message( \
 					"<span class='notice'>\The [user] fixes the microwave.</span>", \
 					"<span class='notice'>You have fixed the microwave.</span>" \
@@ -124,7 +124,7 @@
 			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
 			"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
 			)
-		if (do_after(user,20, src))
+		if (do_after(user,O.GetUseSpeed(user), src))
 			src.anchored = !src.anchored
 			user.visible_message( \
 			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the microwave.</span>", \

@@ -144,7 +144,7 @@
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		if(isWelder(W))
-			var/obj/item/weapon/weldingtool/WT = W
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				to_chat(user, "<span class='notice'>You burn away the fungi with \the [WT].</span>")
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
@@ -159,7 +159,7 @@
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
 		if(isWelder(W))
-			var/obj/item/weapon/weldingtool/WT = W
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
 				return
@@ -181,9 +181,9 @@
 
 	var/turf/T = user.loc	//get user's location for delay checks
 
-	if(damage && istype(W, /obj/item/weapon/weldingtool))
+	if(damage && istype(W, /obj/item/weapon/tool/weldingtool))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
@@ -200,8 +200,8 @@
 		var/dismantle_verb
 		var/dismantle_sound
 
-		if(istype(W,/obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W,/obj/item/weapon/tool/weldingtool))
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
 				return
 			dismantle_verb = "cutting"
@@ -257,7 +257,7 @@
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 				else if(isWirecutter(W))
-					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+					playsound(src, W.toolsound, 100, 1)
 					construction_stage = 5
 					new /obj/item/stack/material/rods( src )
 					to_chat(user, "<span class='notice'>You cut the outer grille.</span>")
@@ -266,8 +266,8 @@
 			if(5)
 				if(isScrewdriver(W))
 					to_chat(user, "<span class='notice'>You begin removing the support lines.</span>")
-					playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
-					if(!do_after(user,40,src) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
+					playsound(src, W.toolsound, 100, 1)
+					if(!do_after(user,W.GetUseSpeed(user, -1),src) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
 						return
 					construction_stage = 4
 					update_icon()
@@ -282,8 +282,8 @@
 						return
 			if(4)
 				var/cut_cover
-				if(istype(W,/obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = W
+				if(istype(W,/obj/item/weapon/tool/weldingtool))
+					var/obj/item/weapon/tool/weldingtool/WT = W
 					if(WT.remove_fuel(0,user))
 						cut_cover=1
 					else
@@ -307,7 +307,7 @@
 				if(isCrowbar(W))
 					to_chat(user, "<span class='notice'>You struggle to pry off the cover.</span>")
 					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
-					if(!do_after(user,100,src) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
+					if(!do_after(user,W.GetUseSpeed(user, 10 SECONDS),src) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
 						return
 					construction_stage = 2
 					update_icon()
@@ -316,8 +316,8 @@
 			if(2)
 				if(isWrench(W))
 					to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>")
-					playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
-					if(!do_after(user,40,src) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
+					playsound(src, W.toolsound, 100, 1)
+					if(!do_after(user,W.GetUseSpeed(user),src) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
 						return
 					construction_stage = 1
 					update_icon()
@@ -325,8 +325,8 @@
 					return
 			if(1)
 				var/cut_cover
-				if(istype(W, /obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = W
+				if(istype(W, /obj/item/weapon/tool/weldingtool))
+					var/obj/item/weapon/tool/weldingtool/WT = W
 					if( WT.remove_fuel(0,user) )
 						cut_cover=1
 					else
@@ -351,7 +351,7 @@
 				if(isCrowbar(W))
 					to_chat(user, "<span class='notice'>You struggle to pry off the outer sheath.</span>")
 					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
-					if(!do_after(user,100,src) || !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+					if(!do_after(user,W.GetUseSpeed(user, 10 SECONDS),src) || !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
 					if(user.loc == T && user.get_active_hand() == W )
 						to_chat(user, "<span class='notice'>You pry off the outer sheath.</span>")
 						dismantle_wall()

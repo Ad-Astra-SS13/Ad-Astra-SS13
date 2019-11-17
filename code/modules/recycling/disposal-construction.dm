@@ -141,13 +141,13 @@
 				return
 			wrench_down(TRUE)
 			to_chat(user, "You attach \the [src] to the underfloor.")
-		playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(loc, I.toolsound, 100, 1)
 		update()
 		update_verbs()
 
-	else if(istype(I, /obj/item/weapon/weldingtool))
+	else if(istype(I, /obj/item/weapon/tool/weldingtool))
 		if(anchored)
-			var/obj/item/weapon/weldingtool/W = I
+			var/obj/item/weapon/tool/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				to_chat(user, "Welding \the [src] in place.")

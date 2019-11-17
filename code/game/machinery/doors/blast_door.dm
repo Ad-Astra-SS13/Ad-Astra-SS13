@@ -143,7 +143,7 @@
 	if(isCrowbar(C) || (istype(C, /obj/item/weapon/material/twohanded/fireaxe) && C:wielded == 1))
 		if(((stat & NOPOWER) || (stat & BROKEN)) && !( operating ))
 			to_chat(user, "<span class='notice'>You begin prying at \the [src]...</span>")
-			if(do_after(user, 2 SECONDS, src))
+			if(do_after(user, C.GetUseSpeed(user), src))
 				force_toggle()
 			else
 				to_chat(user, "<span class='warning'>You must remain still while working on \the [src].</span>")
@@ -267,8 +267,8 @@
 /obj/machinery/door/blast/regular/escape_pod
 	name = "Escape Pod release Door"
 
-/obj/machinery/door/blast/regular/escape_pod/Process()	
-	if(evacuation_controller.emergency_evacuation && evacuation_controller.state >= EVAC_LAUNCHING && src.icon_state == icon_state_closed)		
+/obj/machinery/door/blast/regular/escape_pod/Process()
+	if(evacuation_controller.emergency_evacuation && evacuation_controller.state >= EVAC_LAUNCHING && src.icon_state == icon_state_closed)
 		src.force_open()
 	. = ..()
 

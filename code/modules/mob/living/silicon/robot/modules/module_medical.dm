@@ -40,7 +40,7 @@
 		/obj/item/weapon/surgicaldrill,
 		/obj/item/weapon/gripper/organ,
 		/obj/item/weapon/shockpaddles/robot,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/stack/nanopaste,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/weapon/reagent_containers/dropper/
@@ -75,7 +75,7 @@
 
 /obj/item/weapon/robot_module/medical/surgeon/finalize_synths()
 	. = ..()
-	var/datum/matter_synth/medicine/medicine = locate() in synths 
+	var/datum/matter_synth/medicine/medicine = locate() in synths
 	for(var/thing in list(
 		 /obj/item/stack/nanopaste,
 		 /obj/item/stack/medical/advanced/bruise_pack
@@ -99,7 +99,7 @@
 		"Needles" = "medicalrobot"
 	)
 	equipment = list(
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/flash,
 		/obj/item/borg/sight/hud/med,
 		/obj/item/device/scanner/health,

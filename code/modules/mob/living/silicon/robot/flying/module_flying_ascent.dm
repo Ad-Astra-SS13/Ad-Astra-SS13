@@ -6,19 +6,19 @@
 	sprites = list(
 		"Drone" = "drone-ascent"
 	)
-	// The duplicate clustertools in this list are so that they can set up to 
+	// The duplicate clustertools in this list are so that they can set up to
 	// hack doors, windows etc. without having to constantly cycle through tools.
 	equipment = list(
 		/obj/item/device/flash,
 		/obj/item/weapon/gun/energy/particle/small,
 		/obj/item/device/multitool/mantid,
 		/obj/item/clustertool,
-		/obj/item/clustertool, 
+		/obj/item/clustertool,
 		/obj/item/clustertool,
 		/obj/item/weapon/soap,
 		/obj/item/weapon/mop/advanced,
 		/obj/item/device/plunger/robot,
-		/obj/item/weapon/weldingtool/electric/mantid,
+		/obj/item/weapon/tool/weldingtool/electric/mantid,
 		/obj/item/weapon/extinguisher,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/gas,
