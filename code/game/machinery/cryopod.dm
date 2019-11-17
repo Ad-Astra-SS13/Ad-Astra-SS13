@@ -588,7 +588,7 @@
 		if (isCrowbar(W))
 			busy = 1
 			visible_message("[user] starts to pry the glass cover off of \the [src].")
-			if (!do_after(user, 50, src))
+			if (!do_after(user, W.GetUseSpeed(user), src))
 				visible_message("[user] stops trying to pry the glass off of \the [src].")
 				busy = 0
 				return

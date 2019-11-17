@@ -479,13 +479,13 @@
 						return TRUE
 					has_electronics = 2
 					stat &= ~MAINT
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+					playsound(src.loc, W.toolsound, 50, 1)
 					to_chat(user, "You screw the circuit electronics into place.")
 					update_icon()
 				if(2)
 					has_electronics = 1
 					stat |= MAINT
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+					playsound(src.loc, W.toolsound, 50, 1)
 					to_chat(user, "You unfasten the electronics.")
 					update_icon()
 				if(0)
@@ -549,7 +549,7 @@
 		if(terminal())
 			to_chat(user, SPAN_WARNING("The wire connection is in the way."))
 			return TRUE
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
 			to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
 			return
@@ -557,7 +557,7 @@
 							"You start welding the APC frame...", \
 							"You hear welding.")
 		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-		if(do_after(user, 50, src) && opened && has_electronics == 0 && !terminal())
+		if(do_after(user, W.GetUseSpeed(user, -1), src) && opened && has_electronics == 0 && !terminal())
 			if(!WT.remove_fuel(3, user))
 				return TRUE
 			if (emagged || (stat & BROKEN) || opened==2)
@@ -1130,9 +1130,9 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	switch(val)
 		if(2)
 			return POWERCHAN_OFF_AUTO
-		if(1) 
+		if(1)
 			return POWERCHAN_OFF_TEMP
-		else 
+		else
 			return POWERCHAN_OFF
 
 // Malfunction: Transfers APC under AI's control

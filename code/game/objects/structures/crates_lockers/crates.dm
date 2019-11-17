@@ -53,7 +53,7 @@
 	else if(isWirecutter(W))
 		if(rigged)
 			to_chat(user, "<span class='notice'>You cut away the wiring.</span>")
-			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+			playsound(loc, W.toolsound, 100, 1)
 			rigged = 0
 			return
 	else
@@ -240,7 +240,7 @@
 		/obj/item/weapon/material/minihoe = 2,
 		/obj/item/weapon/storage/plants = 2,
 		/obj/item/weapon/material/hatchet = 2,
-		/obj/item/weapon/wirecutters/clippers = 2,
+		/obj/item/weapon/tool/wirecutters/clippers = 2,
 		/obj/item/device/scanner/plant = 2
 	)
 

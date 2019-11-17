@@ -40,7 +40,7 @@
 
 	var/cutting
 	if(isWelder(W))
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(WT.isOn())
 			cutting = TRUE
 		else

@@ -139,11 +139,11 @@
 		return 1
 
 	if(health < maxhealth && isWelder(W))
-		var/obj/item/weapon/weldingtool/F = W
+		var/obj/item/weapon/tool/weldingtool/F = W
 		if(F.welding)
 			to_chat(user, "<span class='notice'>You begin reparing damage to \the [src].</span>")
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-			if(!do_after(user, 20, src) || !F.remove_fuel(1, user))
+			if(!do_after(user, F.GetUseSpeed(user, -3), src) || !F.remove_fuel(1, user))
 				return
 			user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>",
 			                              "<span class='notice'>You repair some damage to \the [src].</span>")
@@ -246,16 +246,16 @@
 /obj/structure/table/proc/remove_reinforced(obj/item/weapon/screwdriver/S, mob/user)
 	reinforced = common_material_remove(user, reinforced, 40, "reinforcements", "screws", 'sound/items/Screwdriver.ogg')
 
-/obj/structure/table/proc/remove_material(obj/item/weapon/wrench/W, mob/user)
-	material = common_material_remove(user, material, 20, "plating", "bolts", 'sound/items/Ratchet.ogg')
+/obj/structure/table/proc/remove_material(obj/item/weapon/tool/wrench/W, mob/user)
+	material = common_material_remove(user, material, 20, "plating", "bolts", W.toolsound)
 
-/obj/structure/table/proc/dismantle(obj/item/weapon/wrench/W, mob/user)
+/obj/structure/table/proc/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
 	reset_mobs_offset()
 	if(manipulating) return
 	manipulating = 1
 	user.visible_message("<span class='notice'>\The [user] begins dismantling \the [src].</span>",
 	                              "<span class='notice'>You begin dismantling \the [src].</span>")
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+	playsound(src.loc, W.toolsound, 50, 1)
 	if(!do_after(user, 20, src))
 		manipulating = 0
 		return

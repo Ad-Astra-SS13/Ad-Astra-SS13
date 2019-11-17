@@ -878,12 +878,12 @@ proc/get_mob_with_client_list()
 //Quick type checks for some tools
 var/global/list/common_tools = list(
 /obj/item/stack/cable_coil,
-/obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/weldingtool,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wirecutters,
 /obj/item/device/multitool,
-/obj/item/weapon/crowbar)
+/obj/item/weapon/tool/crowbar)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -892,8 +892,8 @@ var/global/list/common_tools = list(
 
 /proc/is_hot(obj/item/W as obj)
 	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
+		if(/obj/item/weapon/tool/weldingtool)
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if(WT.isOn())
 				return 3800
 			else
@@ -946,16 +946,16 @@ var/global/list/common_tools = list(
 /obj/item/proc/can_puncture()
 	return src.sharp
 
-/obj/item/weapon/screwdriver/can_puncture()
+/obj/item/weapon/tool/screwdriver/can_puncture()
 	return 1
 
 /obj/item/weapon/pen/can_puncture()
 	return 1
 
-/obj/item/weapon/weldingtool/can_puncture()
+/obj/item/weapon/tool/weldingtool/can_puncture()
 	return 1
 
-/obj/item/weapon/screwdriver/can_puncture()
+/obj/item/weapon/tool/screwdriver/can_puncture()
 	return 1
 
 /obj/item/weapon/shovel/can_puncture() //includes spades

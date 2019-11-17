@@ -79,9 +79,9 @@
 		if(isWrench(W))
 			add_fingerprint(user)
 			if(anchored)
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, W.toolsound, 50, 1)
 				to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
-				if (do_after(user, 40, src))
+				if (do_after(user, W.GetUseSpeed(user), src))
 					user.visible_message( \
 						"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 						"<span class='notice'>You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
@@ -92,9 +92,9 @@
 					if(user.machine==src)
 						user << browse(null, "window=pipedispenser")
 			else
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				playsound(src.loc, W.toolsound, 50, 1)
 				to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
-				if (do_after(user, 20, src))
+				if (do_after(user, W.GetUseSpeed(user), src))
 					user.visible_message( \
 						"<span class='notice'>\The [user] fastens \the [src].</span>", \
 						"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>", \

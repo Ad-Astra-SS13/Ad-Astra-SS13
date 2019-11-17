@@ -6,7 +6,7 @@
 	icon_state = "welderpack"
 	w_class = ITEM_SIZE_HUGE
 	var/max_fuel = 350
-	var/obj/item/weapon/weldingtool/welder
+	var/obj/item/weapon/tool/weldingtool/welder
 
 /obj/item/weapon/weldpack/Initialize()
 	create_reagents(max_fuel)
@@ -21,7 +21,7 @@
 
 /obj/item/weapon/weldpack/attackby(obj/item/W as obj, mob/user as mob)
 	if(isWelder(W))
-		var/obj/item/weapon/weldingtool/T = W
+		var/obj/item/weapon/tool/weldingtool/T = W
 		if(T.welding & prob(50))
 			log_and_message_admins("triggered a fueltank explosion.", user)
 			to_chat(user, "<span class='danger'>That was stupid of you.</span>")

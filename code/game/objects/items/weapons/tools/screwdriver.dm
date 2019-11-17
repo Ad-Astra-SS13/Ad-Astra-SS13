@@ -1,4 +1,4 @@
-/obj/item/weapon/screwdriver
+/obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
 	desc = "Your archetypal flathead screwdriver, with a nice, heavy polymer handle."
 	icon = 'icons/obj/tools.dmi'
@@ -16,11 +16,12 @@
 	attack_verb = list("stabbed")
 	lock_picking_level = 5
 	sharp = TRUE
+	toolsound = 'sound/items/Screwdriver.ogg'
 
 	var/build_from_parts = TRUE
 	var/valid_colours = list(COLOR_RED, COLOR_CYAN_BLUE, COLOR_PURPLE, COLOR_CHESTNUT, COLOR_GREEN, COLOR_TEAL, COLOR_ASSEMBLY_YELLOW, COLOR_BOTTLE_GREEN, COLOR_VIOLET, COLOR_GRAY80, COLOR_GRAY20)
 
-/obj/item/weapon/screwdriver/Initialize()
+/obj/item/weapon/tool/screwdriver/Initialize()
 	if(build_from_parts)
 		icon_state = "screwdriver_handle"
 		color = pick(valid_colours)
@@ -29,7 +30,7 @@
 		src.pixel_y = rand(0, 16)
 	. = ..()
 
-/obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/tool/screwdriver/tool/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.zone_sel.selecting != BP_EYES && user.zone_sel.selecting != BP_HEAD)

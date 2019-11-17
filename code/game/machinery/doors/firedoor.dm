@@ -190,10 +190,10 @@
 	if(operating)
 		return//Already doing something.
 	if(isWelder(C) && !repairing)
-		var/obj/item/weapon/weldingtool/W = C
+		var/obj/item/weapon/tool/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 2 SECONDS, src))
+			if(do_after(user, C.GetUseSpeed(user, -3), src))
 				if(!W.isOn()) return
 				blocked = !blocked
 				user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
@@ -210,7 +210,7 @@
 		hatch_open = !hatch_open
 		user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
 									"You have [hatch_open ? "opened" : "closed"] the [src] maintenance hatch.")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(loc, C.toolsound, 50, 1)
 		update_icon()
 		return
 
@@ -252,7 +252,7 @@
 		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 				"You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!",\
 				"You hear metal strain.")
-		if(do_after(user,30,src))
+		if(do_after(user,C.GetUseSpeed(user),src))
 			if(isCrowbar(C))
 				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\

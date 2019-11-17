@@ -51,12 +51,12 @@
 	icon_state = "welder"
 
 /obj/random/tool/spawn_choices()
-	return list(/obj/item/weapon/screwdriver,
-				/obj/item/weapon/wirecutters,
-				/obj/item/weapon/weldingtool,
-				/obj/item/weapon/weldingtool/largetank,
-				/obj/item/weapon/crowbar,
-				/obj/item/weapon/wrench,
+	return list(/obj/item/weapon/tool/screwdriver,
+				/obj/item/weapon/tool/wirecutters,
+				/obj/item/weapon/tool/weldingtool,
+				/obj/item/weapon/tool/weldingtool/largetank,
+				/obj/item/weapon/tool/crowbar,
+				/obj/item/weapon/tool/wrench,
 				/obj/item/device/flashlight)
 
 /obj/random/technology_scanner

@@ -24,10 +24,10 @@ obj/structure/firedoor_assembly/attackby(var/obj/item/C, var/mob/user)
 				to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 
 	else if(isWirecutter(C) && wired )
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, C.toolsound, 100, 1)
 		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
 
-		if(do_after(user, 40, src))
+		if(do_after(user, C.GetUseSpeed(user), src))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You cut the wires!</span>")
 			new/obj/item/stack/cable_coil(src.loc, 1)
@@ -47,16 +47,16 @@ obj/structure/firedoor_assembly/attackby(var/obj/item/C, var/mob/user)
 			to_chat(user, "<span class='warning'>You must secure \the [src] first!</span>")
 	else if(isWrench(C) && !wired)
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, C.toolsound, 50, 1)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
 							  "You have [anchored ? "" : "un" ]secured \the [src]!")
 		update_icon()
 	else if(!anchored && isWelder(C))
-		var/obj/item/weapon/weldingtool/WT = C
+		var/obj/item/weapon/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='warning'>[user] dissassembles \the [src].</span>",
 			"You start to dissassemble \the [src].")
-			if(do_after(user, 40, src))
+			if(do_after(user, WT.GetUseSpeed(user, -1), src))
 				if(!src || !WT.isOn()) return
 				user.visible_message("<span class='warning'>[user] has dissassembled \the [src].</span>",
 									"You have dissassembled \the [src].")

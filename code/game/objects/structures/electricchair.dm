@@ -13,7 +13,7 @@
 /obj/structure/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(isWrench(W))
 		var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, W.toolsound, 50, 1)
 		C.set_dir(dir)
 		part.dropInto(loc)
 		part.master = null

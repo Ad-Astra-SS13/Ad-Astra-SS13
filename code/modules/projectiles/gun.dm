@@ -186,7 +186,6 @@
 		return ..() //Pistolwhippin'
 
 /obj/item/weapon/gun/dropped(var/mob/living/user)
-	check_accidents(user)
 	update_icon()
 	return ..()
 

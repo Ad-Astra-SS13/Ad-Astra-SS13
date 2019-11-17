@@ -34,7 +34,7 @@
 		damage += 5
 
 	if(isWelder(W))
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

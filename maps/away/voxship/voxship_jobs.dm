@@ -22,7 +22,7 @@
 	shoes = /obj/item/clothing/shoes/magboots/vox
 	belt = /obj/item/weapon/storage/belt/utility/full
 	r_pocket = /obj/item/device/radio
-	l_pocket = /obj/item/weapon/crowbar/prybar
+	l_pocket = /obj/item/weapon/tool/crowbar/prybar
 
 /obj/effect/submap_landmark/spawnpoint/voxship_crew
 	name = "Shoal Scavenger"

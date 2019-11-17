@@ -139,34 +139,29 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 				if(isWirecutter(I) || isWirecutter(offhand_item))
 					var/colour = href_list["cut"]
 					CutWireColour(colour)
-					if(prob(L.skill_fail_chance(SKILL_ELECTRICAL, 20, SKILL_ADEPT)))
-						RandomCut()
-						to_chat(L, "<span class='danger'>You accidentally nick another wire!</span>")
-					else if(!L.skill_check(SKILL_ELECTRICAL, SKILL_BASIC))
-						RandomCutAll(10)
-						to_chat(L, "<span class='danger'>You think you might have nicked some of the other wires!</span>")
+					if(!L.skill_check(SKILL_ELECTRICAL, SKILL_BASIC))
+						if(prob(25))
+							RandomCutAll(10)
+							to_chat(L, "<span class='danger'>You think you might have nicked some of the other wires!</span>")
 				else
 					to_chat(L, "<span class='error'>You need wirecutters!</span>")
 			else if(href_list["pulse"])
 				if(isMultitool(I) || isMultitool(offhand_item))
 					var/colour = href_list["pulse"]
-					if(prob(L.skill_fail_chance(SKILL_ELECTRICAL, 30, SKILL_ADEPT)))
-						RandomPulse()
-						to_chat(L, "<span class='danger'>You accidentally pulse another wire!</span>")
-						if(prob(L.skill_fail_chance(SKILL_ELECTRICAL, 60, SKILL_BASIC)))
+					if(!L.skill_check(SKILL_ELECTRICAL, SKILL_BASIC))
+						if(prob(25))
+							to_chat(L, "<span class='danger'>You think you might have pulsed the wrong wire!</span>")
 							RandomPulse() //or two
 					else
 						PulseColour(colour)
-					if(prob(L.skill_fail_chance(SKILL_ELECTRICAL, 50, SKILL_BASIC)))
-						wires = shuffle(wires) //Leaves them in a different order for anyone else.
-						to_chat(L, "<span class='danger'>You get the wires all tangled up!</span>")
+					if(!L.skill_check(SKILL_ELECTRICAL, SKILL_BASIC))
+						if(prob(10))
+							wires = shuffle(wires) //Leaves them in a different order for anyone else.
+							to_chat(L, "<span class='danger'>You get the wires all tangled up!</span>")
 				else
 					to_chat(L, "<span class='error'>You need a multitool!</span>")
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
-				if(prob(L.skill_fail_chance(SKILL_ELECTRICAL, 80, SKILL_EXPERT)))
-					colour = pick(wires)
-					to_chat(L, "<span class='danger'>Are you sure you got the right wire?</span>")
 				// Detach
 				if(IsAttached(colour))
 					var/obj/item/O = Detach(colour)

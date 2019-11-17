@@ -127,7 +127,7 @@
 	var/damage = max_health - health
 	if(damage && isWelder(W))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 
 		if(!WT.isOn())
 			return

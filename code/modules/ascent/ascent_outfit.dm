@@ -8,7 +8,7 @@
 	pda_type = null
 	pda_slot = 0
 	flags =    0
-	
+
 /decl/hierarchy/outfit/job/ascent/attendant
 	name = "Ascent - Attendant"
 	back = /obj/item/weapon/rig/mantid
@@ -76,10 +76,10 @@
 	. = ..()
 	for(var/tool in list(
 		/obj/item/weapon/gun/energy/particle/small,
-		/obj/item/device/multitool/mantid, 
-		/obj/item/clustertool, 
-		/obj/item/clustertool, 
-		/obj/item/weapon/weldingtool/electric/mantid,
+		/obj/item/device/multitool/mantid,
+		/obj/item/clustertool,
+		/obj/item/clustertool,
+		/obj/item/weapon/tool/weldingtool/electric/mantid,
 		/obj/item/stack/medical/resin
 	))
 		allowed |= tool

@@ -26,7 +26,7 @@
 	update_icon()
 	. = ..()
 
-/obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
+/obj/structure/bookcase/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/book))
 		if(!user.unEquip(O, src))
 			return
@@ -38,9 +38,9 @@
 		else
 			SetName("bookcase ([newname])")
 	else if(isScrewdriver(O))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		playsound(loc, O.toolsound, 75, 1)
 		to_chat(user, "<span class='notice'>You begin dismantling \the [src].</span>")
-		if(do_after(user,25,src))
+		if(do_after(user, O.GetUseSpeed(user, -2.5),src))
 			to_chat(user, "<span class='notice'>You dismantle \the [src].</span>")
 			new/obj/item/stack/material/wood(get_turf(src), 5)
 			for(var/obj/item/weapon/book/b in contents)
@@ -214,7 +214,7 @@
 	else if(istype(W, /obj/item/weapon/material/knife) || isWirecutter(W))
 		if(carved)	return
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
-		if(do_after(user, 30, src))
+		if(do_after(user, W.GetUseSpeed(user), src))
 			to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
 			carved = 1
 			return

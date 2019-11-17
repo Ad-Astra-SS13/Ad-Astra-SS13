@@ -14,7 +14,7 @@
 /obj/structure/hygiene/drain/attackby(var/obj/item/thing, var/mob/user)
 	..()
 	if(isWelder(thing))
-		var/obj/item/weapon/weldingtool/WT = thing
+		var/obj/item/weapon/tool/weldingtool/WT = thing
 		if(WT.isOn())
 			welded = !welded
 			to_chat(user, "<span class='notice'>You weld \the [src] [welded ? "closed" : "open"].</span>")
@@ -24,7 +24,7 @@
 		return
 	if(isWrench(thing))
 		new /obj/item/drain(src.loc)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, thing.toolsound, 50, 1)
 		to_chat(user, "<span class='warning'>[user] unwrenches the [src].</span>")
 		qdel(src)
 		return
@@ -48,7 +48,7 @@
 /obj/item/drain/attackby(var/obj/item/thing, var/mob/user)
 	if(isWrench(thing))
 		new /obj/structure/hygiene/drain(src.loc)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, thing.toolsound, 50, 1)
 		to_chat(user, "<span class='warning'>[user] wrenches the [src] down.</span>")
 		qdel(src)
 		return

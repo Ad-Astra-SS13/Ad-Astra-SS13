@@ -25,18 +25,18 @@
 	switch(state)
 		if(0)
 			if(isWrench(P))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+				playsound(loc, P.toolsound, 50, 1)
+				if(do_after(user, P.GetUseSpeed(user), src))
 					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
 					anchored = 1
 					state = 1
 			if(isWelder(P))
-				var/obj/item/weapon/weldingtool/WT = P
+				var/obj/item/weapon/tool/weldingtool/WT = P
 				if(!WT.isOn())
 					to_chat(user, "The welder must be on for this task.")
 					return
 				playsound(loc, 'sound/items/Welder.ogg', 50, 1)
-				if(do_after(user, 20, src))
+				if(do_after(user, WT.GetUseSpeed(user, -3), src))
 					if(!src || !WT.remove_fuel(0, user)) return
 					to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
 					new /obj/item/stack/material/plasteel( loc, 4)
@@ -44,8 +44,8 @@
 					return
 		if(1)
 			if(isWrench(P))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+				playsound(loc, P.toolsound, 50, 1)
+				if(do_after(user, P.GetUseSpeed(user), src))
 					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 					anchored = 0
 					state = 0
@@ -55,7 +55,7 @@
 				icon_state = "1"
 				circuit = P
 			if(isScrewdriver(P) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, P.toolsound, 50, 1)
 				to_chat(user, "<span class='notice'>You screw the circuit board into place.</span>")
 				state = 2
 				icon_state = "2"
@@ -68,7 +68,7 @@
 				circuit = null
 		if(2)
 			if(isScrewdriver(P) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, P.toolsound, 50, 1)
 				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
 				state = 1
 				icon_state = "1"
@@ -90,7 +90,7 @@
 				if (brain)
 					to_chat(user, "Get that brain out of there first")
 				else
-					playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
+					playsound(loc, P.toolsound, 50, 1)
 					to_chat(user, "<span class='notice'>You remove the cables.</span>")
 					state = 2
 					icon_state = "2"
@@ -184,7 +184,7 @@
 					to_chat(user, "<span class='warning'>Core fails to connect to the systems of [GLOB.using_map.full_name]!</span>")
 					return
 
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+				playsound(loc, P.toolsound, 50, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
 				if(!brain)
 					var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
@@ -245,7 +245,7 @@
 		else
 			to_chat(user, "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence.")
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(anchored)
 			user.visible_message("<span class='notice'>\The [user] starts to unbolt \the [src] from the plating...</span>")
 			if(!do_after(user,40,src))

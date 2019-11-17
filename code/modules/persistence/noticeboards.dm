@@ -89,7 +89,7 @@
 	if(isScrewdriver(thing))
 		var/choice = input("Which direction do you wish to place the noticeboard?", "Noticeboard Offset") as null|anything in list("North", "South", "East", "West")
 		if(choice && Adjacent(user) && thing.loc == user && !user.incapacitated())
-			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(loc, thing.toolsound, 50, 1)
 			switch(choice)
 				if("North")
 					pixel_x = 0
@@ -106,8 +106,8 @@
 		return
 	else if(isWrench(thing))
 		visible_message(SPAN_WARNING("\The [user] begins dismantling \the [src]."))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 50, src))
+		playsound(loc, thing.toolsound, 50, 1)
+		if(do_after(user, thing.GetUseSpeed(user), src))
 			visible_message(SPAN_DANGER("\The [user] has dismantled \the [src]!"))
 			dismantle()
 		return

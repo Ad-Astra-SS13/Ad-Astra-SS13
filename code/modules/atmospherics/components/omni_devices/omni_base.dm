@@ -88,8 +88,8 @@
 		add_fingerprint(user)
 		return 1
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	if(do_after(user, 40, src))
+	playsound(src.loc, W.toolsound, 50, 1)
+	if(do_after(user, W.GetUseSpeed(user), src))
 		user.visible_message( \
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \

@@ -205,7 +205,7 @@
 				quality = SPAN_BOLD("well made, and will definitely be more than sufficent for most purposes.")
 			if(ITEM_QUALITY_EXCEPTIONAL)
 				quality = SPAN_NOTICE("exceptionally made, and will likely last for a very long time and is suitable for most, if not all purposes.")
-	desc_comp += " It is [quality]"
+		desc_comp += " It is [quality]"
 	return ..(user, distance, "", desc_comp)
 
 /obj/item/attack_hand(mob/user as mob)

@@ -26,7 +26,7 @@
 	id = "bracejack"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
 	materials = list(MATERIAL_STEEL = 120)
-	build_path = /obj/item/weapon/crowbar/brace_jack
+	build_path = /obj/item/weapon/tool/crowbar/brace_jack
 	sort_string = "VAGAD"
 
 /datum/design/item/tool/clamp
@@ -61,7 +61,7 @@
 	id = "experimental_welder"
 	req_tech = list(TECH_ENGINEERING = 5, TECH_PHORON = 4)
 	materials = list(MATERIAL_STEEL = 120, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/weldingtool/experimental
+	build_path = /obj/item/weapon/tool/weldingtool/experimental
 	sort_string = "VAGAG"
 
 /datum/design/item/tool/shield_diffuser

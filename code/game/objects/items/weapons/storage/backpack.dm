@@ -385,7 +385,7 @@
 	cant_hold = list(/obj/item/weapon/storage/backpack/satchel/flat) //muh recursive backpacks
 	startswith = list(
 		/obj/item/stack/tile/floor,
-		/obj/item/weapon/crowbar
+		/obj/item/weapon/tool/crowbar
 		)
 
 /obj/item/weapon/storage/backpack/satchel/flat/MouseDrop(var/obj/over_object)

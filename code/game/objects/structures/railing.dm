@@ -217,8 +217,8 @@
 	// Dismantle
 	if(isWrench(W))
 		if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			if(do_after(user, 20, src))
+			playsound(src.loc, W.toolsound, 50, 1)
+			if(do_after(user, W.GetUseSpeed(user), src))
 				if(anchored)
 					return
 				user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
@@ -227,7 +227,7 @@
 			return
 	// Wrench Open
 		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, W.toolsound, 50, 1)
 			if(density)
 				user.visible_message("<span class='notice'>\The [user] wrenches \the [src] open.</span>", "<span class='notice'>You wrench \the [src] open.</span>")
 				density = 0
@@ -238,13 +238,13 @@
 			return
 	// Repair
 	if(isWelder(W))
-		var/obj/item/weapon/weldingtool/F = W
+		var/obj/item/weapon/tool/weldingtool/F = W
 		if(F.isOn())
 			if(health >= maxhealth)
 				to_chat(user, "<span class='warning'>\The [src] does not need repairs.</span>")
 				return
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-			if(do_after(user, 20, src))
+			if(do_after(user, F.GetUseSpeed(user, -3), src))
 				if(health >= maxhealth)
 					return
 				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
@@ -257,8 +257,8 @@
 			to_chat(user, "<span class='notice'>You need to wrench \the [src] from back into place first.</span>")
 			return
 		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrew \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-		if(do_after(user, 10, src) && density)
+		playsound(loc, W.toolsound, 75, 1)
+		if(do_after(user, W.GetUseSpeed(user, -4), src) && density)
 			to_chat(user, (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))
 			anchored = !anchored
 			update_icon()

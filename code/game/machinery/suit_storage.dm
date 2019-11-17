@@ -103,9 +103,9 @@
 
 /obj/machinery/suit_storage_unit/attackby(var/obj/item/I, var/mob/user)
 	if(isScrewdriver(I))
-		if(do_after(user, 50, src))
+		if(do_after(user, I.GetUseSpeed(user), src))
 			panelopen = !panelopen
-			playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
+			playsound(loc, I.toolsound, 100, 1)
 			to_chat(user, SPAN_NOTICE("You [panelopen ? "open" : "close"] the unit's maintenance panel."))
 			SSnano.update_uis(src)
 			update_icon()
@@ -113,7 +113,7 @@
 	if(isCrowbar(I))
 		if(inoperable() && !islocked && !isopen)
 			to_chat(user, SPAN_NOTICE("You begin prying the unit open."))
-			if(do_after(user, 50, src))
+			if(do_after(user, I.GetUseSpeed(user), src))
 				isopen = TRUE
 				to_chat(user, SPAN_NOTICE("You pry the unit open."))
 				SSnano.update_uis(src)
@@ -171,7 +171,7 @@
 	data["superuv"] = issuperUV
 	data["safeties"] = safetieson
 	data["helmet"] = helmet
-	data["suit"] = suit 
+	data["suit"] = suit
 	data["boots"] = boots
 	data["tank"] = tank
 	data["mask"] = mask

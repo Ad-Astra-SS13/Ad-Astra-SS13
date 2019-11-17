@@ -63,15 +63,15 @@
 /obj/structure/girder/attackby(var/obj/item/W, var/mob/user)
 	if(isWrench(W) && state == 0)
 		if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src.loc, W.toolsound, 100, 1)
 			to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
-			if(do_after(user, 40,src))
+			if(do_after(user, W.GetUseSpeed(user),src))
 				to_chat(user, "<span class='notice'>You dissasembled the girder!</span>")
 				dismantle()
 		else if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+			playsound(src.loc, W.toolsound, 100, 1)
 			to_chat(user, "<span class='notice'>Now securing the girder...</span>")
-			if(do_after(user, 40,src))
+			if(do_after(user, W.GetUseSpeed(user),src))
 				to_chat(user, "<span class='notice'>You secured the girder!</span>")
 				reset_girder()
 
@@ -98,20 +98,20 @@
 
 	else if(isScrewdriver(W))
 		if(state == 2)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+			playsound(src.loc, W.toolsound, 100, 1)
 			to_chat(user, "<span class='notice'>Now unsecuring support struts...</span>")
-			if(do_after(user, 40,src))
+			if(do_after(user, W.GetUseSpeed(user),src))
 				to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
 				state = 1
 		else if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+			playsound(src.loc, W.toolsound, 100, 1)
 			reinforcing = !reinforcing
 			to_chat(user, "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>")
 
 	else if(isWirecutter(W) && state == 1)
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, W.toolsound, 100, 1)
 		to_chat(user, "<span class='notice'>Now removing support struts...</span>")
-		if(do_after(user, 40,src))
+		if(do_after(user, W.GetUseSpeed(user),src))
 			to_chat(user, "<span class='notice'>You removed the support struts!</span>")
 
 			if(reinf_material)
@@ -123,7 +123,7 @@
 	else if(isCrowbar(W) && state == 0 && anchored)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
-		if(do_after(user, 40,src))
+		if(do_after(user, W.GetUseSpeed(user),src))
 			to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
 			icon_state = "displaced"
 			anchored = 0
@@ -247,9 +247,9 @@
 
 /obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
 	if(isWrench(W))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+		playsound(src.loc, W.toolsound, 100, 1)
 		to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
-		if(do_after(user,40,src))
+		if(do_after(user,W.GetUseSpeed(user),src))
 			to_chat(user, "<span class='notice'>You dissasembled the girder!</span>")
 			dismantle()
 

@@ -263,9 +263,9 @@ var/list/airlock_overlays = list()
 /obj/machinery/door/airlock/external/escapepod/attackby(obj/item/C, mob/user)
 	if(p_open && !arePowerSystemsOn())
 		if(isWrench(C))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, C.toolsound, 50, 1)
 			user.visible_message(SPAN_WARNING("[user.name] starts frantically pumping the bolt override mechanism!"), SPAN_WARNING("You start frantically pumping the bolt override mechanism!"))
-			if(do_after(user, 160) && locked)
+			if(do_after(user, C.GetUseSpeed(user)) && locked)
 				visible_message("\The [src] bolts disengage!")
 				locked = 0
 				return
@@ -955,11 +955,12 @@ About the new airlock wires panel:
 	var/cut_sound
 
 	if(isWelder(item))
-		var/obj/item/weapon/weldingtool/WT = item
+		var/obj/item/weapon/tool/weldingtool/WT = item
 		if(!WT.remove_fuel(0,user))
 			return 0
 		cut_verb = "cutting"
 		cut_sound = 'sound/items/Welder.ogg'
+		cut_delay = item.GetUseSpeed(user, 5)
 	else if(istype(item,/obj/item/weapon/gun/energy/plasmacutter)) //They could probably just shoot them out, but who cares!
 		var/obj/item/weapon/gun/energy/plasmacutter/cutter = item
 		if(!cutter.slice(user))
@@ -1027,7 +1028,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/attackby(var/obj/item/C, var/mob/user)
 	// Brace is considered installed on the airlock, so interacting with it is protected from electrification.
-	if(brace && (istype(C.GetIdCard(), /obj/item/weapon/card/id/) || istype(C, /obj/item/weapon/crowbar/brace_jack)))
+	if(brace && (istype(C.GetIdCard(), /obj/item/weapon/card/id/) || istype(C, /obj/item/weapon/tool/crowbar/brace_jack)))
 		return brace.attackby(C, user)
 
 	if(!brace && istype(C, /obj/item/weapon/airlock_brace))
@@ -1059,7 +1060,7 @@ About the new airlock wires panel:
 		return
 
 	if(!repairing && isWelder(C) && !( operating > 0 ) && density)
-		var/obj/item/weapon/weldingtool/W = C
+		var/obj/item/weapon/tool/weldingtool/W = C
 		if(!W.remove_fuel(0,user))
 			to_chat(user, SPAN_NOTICE("Your [W.name] doesn't have enough fuel."))
 			return
@@ -1096,7 +1097,7 @@ About the new airlock wires panel:
 		if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && !src.locked)) && !brace)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40,src))
+			if(do_after(user,C.GetUseSpeed(user),src))
 				to_chat(user, "<span class='notice'>You've removed the airlock electronics!</span>")
 				deconstruct(user)
 				return

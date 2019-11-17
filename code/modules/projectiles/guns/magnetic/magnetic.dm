@@ -113,7 +113,7 @@
 				return
 			user.put_in_hands(capacitor)
 			user.visible_message("<span class='notice'>\The [user] unscrews \the [capacitor] from \the [src].</span>")
-			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(loc, thing.toolsound, 50, 1)
 			capacitor = null
 			update_icon()
 			return

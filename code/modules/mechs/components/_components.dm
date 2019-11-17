@@ -108,7 +108,7 @@
 /obj/item/mech_component/proc/update_components()
 	return
 
-/obj/item/mech_component/proc/repair_brute_generic(var/obj/item/weapon/weldingtool/WT, var/mob/user)
+/obj/item/mech_component/proc/repair_brute_generic(var/obj/item/weapon/tool/weldingtool/WT, var/mob/user)
 	if(!istype(WT))
 		return
 	if(!brute_damage)
@@ -141,7 +141,7 @@
 	if(user.do_skilled(10, SKILL_DEVICES , src, 0.6) && burn_damage)
 		if(QDELETED(CC) || QDELETED(src) || !CC.use(needed_amount))
 			return
-			
+
 		repair_burn_damage(25)
 		to_chat(user, SPAN_NOTICE("You mend the damage to \the [src]'s wiring."))
 		playsound(user.loc, 'sound/items/Deconstruct.ogg', 25, 1)

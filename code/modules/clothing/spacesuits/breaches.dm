@@ -216,7 +216,7 @@
 			to_chat(user, "There is no structural damage on \the [src] to repair.")
 			return
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(5))
 			to_chat(user, "<span class='warning'>You need more welding fuel to repair this suit.</span>")
 			return
@@ -234,7 +234,7 @@
 
 		if(!target_breach)
 			to_chat(user, "There are no open breaches to seal with \the [W].")
-		else 
+		else
 			playsound(src, 'sound/effects/tape.ogg',25)
 			var/mob/living/carbon/human/H = user
 			if(!istype(H)) return

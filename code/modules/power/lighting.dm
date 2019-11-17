@@ -61,9 +61,9 @@
 	src.add_fingerprint(user)
 	if(isWrench(W))
 		if (src.stage == 1)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+			playsound(src.loc, W.toolsound, 75, 1)
 			to_chat(usr, "You begin deconstructing \a [src].")
-			if (!do_after(usr, 30,src))
+			if (!do_after(usr, W.GetUseSpeed(user),src))
 				return
 			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
@@ -85,7 +85,7 @@
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+		playsound(src.loc, W.toolsound, 100, 1)
 		return
 
 	if(istype(W, /obj/item/stack/cable_coil))
@@ -104,7 +104,7 @@
 			src.update_icon()
 			user.visible_message("[user.name] closes [src]'s casing.", \
 				"You close [src]'s casing.", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			playsound(src.loc, W.toolsound, 75, 1)
 
 			var/obj/machinery/light/newlight = new fixture_type(src.loc, src)
 			newlight.set_dir(src.dir)
@@ -364,8 +364,8 @@
 
 	// attempt to stick weapon into light socket
 	else if(!lightbulb)
-		if(istype(W, /obj/item/weapon/screwdriver)) //If it's a screwdriver open it.
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		if(istype(W, /obj/item/weapon/tool/screwdriver)) //If it's a screwdriver open it.
+			playsound(src.loc, W.toolsound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", "You open [src]'s casing.", "You hear a noise.")
 			new construct_type(src.loc, src.dir, src)
 			qdel(src)

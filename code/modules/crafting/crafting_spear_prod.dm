@@ -5,8 +5,8 @@
 	completion_trigger_type = /obj/item/stack/material/rods
 	stack_consume_amount = 1
 	next_stages = list(
-		/decl/crafting_stage/spear_blade_shard, 
-		/decl/crafting_stage/spear_blade_blade, 
+		/decl/crafting_stage/spear_blade_shard,
+		/decl/crafting_stage/spear_blade_blade,
 		/decl/crafting_stage/stunprod_wirecutters
 	)
 
@@ -29,6 +29,6 @@
 	. = ispath(product, /obj/item/weapon/material) && new product(get_turf(work), blade && blade.material && blade.material.name)
 
 /decl/crafting_stage/stunprod_wirecutters
-	completion_trigger_type = /obj/item/weapon/wirecutters
+	completion_trigger_type = /obj/item/weapon/tool/wirecutters
 	progress_message = "You fasten the wirecutters to the top of the rod with the cable, prongs outward."
 	product = /obj/item/weapon/melee/baton/cattleprod

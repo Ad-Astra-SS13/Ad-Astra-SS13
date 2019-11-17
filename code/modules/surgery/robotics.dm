@@ -35,7 +35,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 /decl/surgery_step/robotics/unscrew_hatch
 	name = "Unscrew maintenance hatch"
 	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
+		/obj/item/weapon/tool/screwdriver = 100,
 		/obj/item/weapon/material/coin = 50,
 		/obj/item/weapon/material/knife = 50
 	)
@@ -70,7 +70,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 /decl/surgery_step/robotics/screw_hatch
 	name = "Secure maintenance hatch"
 	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
+		/obj/item/weapon/tool/screwdriver = 100,
 		/obj/item/weapon/material/coin = 50,
 		/obj/item/weapon/material/knife = 50
 	)
@@ -106,7 +106,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 	name = "Open maintenance hatch"
 	allowed_tools = list(
 		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
+		/obj/item/weapon/tool/crowbar = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
 	)
 
@@ -142,7 +142,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 	name = "Close maintenance hatch"
 	allowed_tools = list(
 		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
+		/obj/item/weapon/tool/crowbar = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
 	)
 
@@ -178,7 +178,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 /decl/surgery_step/robotics/repair_brute
 	name = "Repair damage to prosthetic"
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 100,
+		/obj/item/weapon/tool/weldingtool = 100,
 		/obj/item/weapon/gun/energy/plasmacutter = 50,
 		/obj/item/psychic_power/psiblade/master = 100
 	)
@@ -201,7 +201,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 			to_chat(user, SPAN_WARNING("\The [target]'s [affected.name] is too brittle to be repaired normally."))
 			return FALSE
 		if(isWelder(tool))
-			var/obj/item/weapon/weldingtool/welder = tool
+			var/obj/item/weapon/tool/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return FALSE
 		if(istype(tool, /obj/item/weapon/gun/energy/plasmacutter))
@@ -338,7 +338,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 	allowed_tools = list(
 		/obj/item/stack/nanopaste = 100,
 		/obj/item/weapon/bonegel = 30,
-		/obj/item/weapon/screwdriver = 70,
+		/obj/item/weapon/tool/screwdriver = 70,
 	)
 	min_duration = 70
 	max_duration = 90
@@ -346,9 +346,9 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 
 /decl/surgery_step/robotics/fix_organ_robotic/get_skill_reqs(mob/living/user, mob/living/carbon/human/target, obj/item/tool)
 	if(target.isSynthetic())
-		return SURGERY_SKILLS_ROBOTIC 
+		return SURGERY_SKILLS_ROBOTIC
 	else
-		return SURGERY_SKILLS_ROBOTIC_ON_MEAT 
+		return SURGERY_SKILLS_ROBOTIC_ON_MEAT
 
 /decl/surgery_step/robotics/fix_organ_robotic/assess_bodypart(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = ..()
@@ -437,7 +437,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 /decl/surgery_step/robotics/attach_organ_robotic
 	name = "Reattach prosthetic organ"
 	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
+		/obj/item/weapon/tool/screwdriver = 100,
 	)
 	min_duration = 100
 	max_duration = 120
@@ -560,7 +560,7 @@ decl/surgery_step/robotics/get_skill_reqs(mob/living/user, mob/living/carbon/hum
 	max_duration = 80
 	allowed_tools = list(
 		/obj/item/weapon/hemostat = 100,
-		/obj/item/weapon/wirecutters = 75,
+		/obj/item/weapon/tool/wirecutters = 75,
 		/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
 	can_infect = 0

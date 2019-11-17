@@ -1,4 +1,4 @@
-/obj/item/weapon/wirecutters
+/obj/item/weapon/tool/wirecutters
 	name = "wirecutters"
 	desc = "A special pair of pliers with cutting edges. Various brackets and manipulators built into the handle allow it to repair severed wiring."
 	icon = 'icons/obj/tools.dmi'
@@ -16,20 +16,21 @@
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
 	edge = 1
+	toolsound = 'sound/items/Wirecutter.ogg'
 
 	var/build_from_parts = TRUE
 	var/handle_icon = "cutters_handle"
 	var/hardware_icon = "cutters_hardware"
 	var/valid_colours = list(COLOR_RED, PIPE_COLOR_YELLOW, COLOR_BLUE_GRAY, COLOR_MAROON, COLOR_SEDONA, COLOR_BABY_BLUE, COLOR_VIOLET, COLOR_GRAY80, COLOR_GRAY20)
 
-/obj/item/weapon/wirecutters/Initialize()
+/obj/item/weapon/tool/wirecutters/Initialize()
 	if(build_from_parts)
 		icon_state = "cutters_handle"
 		color = pick(valid_colours)
 		overlays += overlay_image(icon, "[hardware_icon]", flags=RESET_COLOR)
 	. = ..()
 
-/obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\

@@ -13,9 +13,9 @@
 	sound_player = /datum/sound_player/synthesizer
 
 /obj/structure/synthesized_instrument/synthesizer/attackby(obj/item/O, mob/user, params)
-	if (istype(O, /obj/item/weapon/wrench))
+	if (istype(O, /obj/item/weapon/tool/wrench))
 		if (!anchored && !isinspace())
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, O.toolsound, 50, 1)
 			to_chat(usr, "<span class='notice'> You begin to tighten \the [src] to the floor...</span>")
 			if (do_after(user, 20))
 				if(!anchored && !isinspace())
@@ -25,7 +25,7 @@
 						"<span class='italics'>You hear ratchet.</span>")
 					src.anchored = 1
 		else if(anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, O.toolsound, 50, 1)
 			to_chat(usr, "<span class='notice'> You begin to loosen \the [src]'s casters...</span>")
 			if (do_after(user, 40))
 				if(anchored)
