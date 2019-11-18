@@ -201,7 +201,7 @@
 		if(!A.z in GLOB.using_map.station_levels)
 			continue
 		else if(!istype(T.loc,/area/hallway/))
-			A.set_light_color("reset") //reset all APCs on ship to nominal brightness
+			A.set_light_color("reset") //reset all non-hallway APCs on ship to nominal brightness
 			continue
 		A.set_light_color(security_level_lightmode)
 		CHECK_TICK

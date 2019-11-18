@@ -4044,8 +4044,8 @@
 "jz" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/light/ascent,
-/obj/item/weapon/weldingtool/electric/mantid,
-/obj/item/weapon/weldingtool/electric/mantid,
+/obj/item/organ/external/groin/insectoid/mantid,
+/obj/item/organ/external/groin/insectoid/mantid,
 /turf/simulated/floor/ascent,
 /area/ship/ascent/engineering)
 "jA" = (

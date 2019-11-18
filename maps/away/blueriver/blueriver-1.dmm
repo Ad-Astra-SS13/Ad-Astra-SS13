@@ -68,7 +68,7 @@
 /turf/simulated/floor/plating,
 /area/bluespaceriver/underground)
 "q" = (
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /turf/simulated/floor/asteroid,
 /area/bluespaceriver/underground)
 "r" = (
