@@ -162,7 +162,7 @@
 /turf/simulated/floor/tiled,
 /area/casino/casino_bridge)
 "aw" = (
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /obj/item/stack/material/rods,
 /turf/space,
 /area/space)
@@ -827,7 +827,7 @@
 /area/casino/casino_security)
 "ci" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/floor/plating,
 /area/casino/casino_security)
 "cj" = (
@@ -1697,7 +1697,7 @@
 /area/casino/casino_storage)
 "eA" = (
 /obj/item/device/multitool,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /turf/simulated/floor/tiled,
 /area/casino/casino_security)
 "eB" = (
@@ -3911,9 +3911,9 @@
 	dir = 4
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/item/clothing/head/welding,
-/obj/item/weapon/weldingtool,
+/obj/item/weapon/tool/weldingtool,
 /turf/simulated/floor/plating,
 /area/casino/casino_crew_atmos)
 "kn" = (

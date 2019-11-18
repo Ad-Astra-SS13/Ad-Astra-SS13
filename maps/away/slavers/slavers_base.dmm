@@ -56,7 +56,7 @@
 /area/slavers_base/mort)
 "ao" = (
 /obj/structure/table/standard,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /turf/simulated/floor/airless/ceiling,
 /area/slavers_base/mort)
 "ap" = (
@@ -90,7 +90,7 @@
 /area/space)
 "au" = (
 /obj/structure/table/rack,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wirecutters,
 /turf/simulated/floor/airless/ceiling,
 /area/slavers_base/mort)
 "av" = (
@@ -1951,7 +1951,7 @@
 "eW" = (
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/airless,
 /area/slavers_base/med)
@@ -2377,7 +2377,7 @@
 /turf/simulated/floor/tiled/airless,
 /area/slavers_base/hallway)
 "fT" = (
-/obj/item/weapon/wrench,
+/obj/item/weapon/tool/wrench,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/airless,
 /area/slavers_base/hallway)
@@ -2552,7 +2552,7 @@
 /turf/simulated/floor/airless/ceiling,
 /area/slavers_base/powatm)
 "gp" = (
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /turf/simulated/floor/airless/ceiling,
 /area/slavers_base/powatm)
 "gq" = (

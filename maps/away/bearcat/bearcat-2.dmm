@@ -1344,7 +1344,7 @@
 	icon_state = "bulb1";
 	dir = 8
 	},
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /turf/simulated/floor/tiled/usedup,
 /area/ship/scrap/crew/hallway/starboard)
 "cA" = (
@@ -1484,7 +1484,7 @@
 /obj/item/clothing/mask/breath/emergency,
 /obj/item/clothing/mask/breath/emergency,
 /obj/item/clothing/mask/breath/emergency,
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/item/weapon/tank/oxygen,
 /obj/item/weapon/tank/oxygen,
 /obj/item/weapon/tank/oxygen,
@@ -2654,7 +2654,7 @@
 /turf/simulated/floor/usedup,
 /area/ship/scrap/maintenance/engine/port)
 "eD" = (
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/structure/cable{
 	icon_state = "5-8"
 	},
@@ -4061,7 +4061,7 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
