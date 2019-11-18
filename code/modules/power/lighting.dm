@@ -156,6 +156,8 @@
 
 	var/current_mode = null
 
+	var/can_nightmode = TRUE // if we can use nightmode, then TRUE, otherwise, nightmode does not affect this light.
+
 // the smaller bulb light fixture
 /obj/machinery/light/small
 	icon_state = "bulb_map"
@@ -289,6 +291,20 @@
 		if(current_mode == LIGHTMODE_EMERGENCY)
 			set_mode(null)
 			update_power_channel(initial(power_channel))
+
+/obj/machinery/light/proc/set_nightmode(var/enable)
+	if(!lightbulb)
+		return
+
+	if(!can_nightmode)
+		return
+
+	if(enable)
+		if(LIGHTMODE_NIGHTMODE in lightbulb.lighting_modes)
+			set_mode(LIGHTMODE_NIGHTMODE)
+	else
+		if(current_mode == LIGHTMODE_NIGHTMODE)
+			set_mode(null)
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
@@ -581,6 +597,12 @@
 	b_colour = "#fffee0"
 	lighting_modes = list(
 		LIGHTMODE_EMERGENCY = list(l_outer_range = 4, l_max_bright = 1, l_color = "#da0205"),
+		LIGHTMODE_NIGHTMODE = list(l_outer_range = 4, l_max_bright = 0.75, l_color = "#ffbb73"),
+		LIGHTMODE_VIOLET = list(l_outer_range = 4, l_max_bright = 1, l_color = "#8a11c2"),
+		LIGHTMODE_ORANGE = list(l_outer_range = 4, l_max_bright = 1, l_color = "#f59c16"),
+		LIGHTMODE_RED = list(l_outer_range = 4, l_max_bright = 1, l_color = "#f50c0c"),
+		LIGHTMODE_DELTA = list(l_outer_range = 4, l_max_bright = 1, l_color = "#ffd000"),
+		LIGHTMODE_BLUE = list(l_outer_range = 4, l_max_bright = 1, l_color = "#0d45fc")
 		)
 	sound_on = 'sound/machines/lightson.ogg'
 
@@ -616,6 +638,7 @@
 	b_colour = "#fcfcc7"
 	lighting_modes = list(
 		LIGHTMODE_EMERGENCY = list(l_outer_range = 3, l_max_bright = 1, l_color = "#da0205"),
+		LIGHTMODE_NIGHTMODE = list(l_outer_range = 3, l_max_bright = 0.75, l_color = "#ffbb73"),
 		)
 
 /obj/item/weapon/light/bulb/red
