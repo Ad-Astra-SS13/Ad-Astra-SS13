@@ -895,7 +895,7 @@
 	icon_state = "bulb1";
 	dir = 8
 	},
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/scrap/crew/hallway/starboard)
 "dd" = (
@@ -3020,7 +3020,7 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/obj/item/weapon/crowbar,
+/obj/item/weapon/tool/crowbar,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -6109,7 +6109,7 @@
 /turf/space,
 /area/space)
 "LY" = (
-/obj/item/weapon/screwdriver,
+/obj/item/weapon/tool/screwdriver,
 /obj/structure/cable{
 	icon_state = "5-8"
 	},
