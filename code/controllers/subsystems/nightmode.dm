@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(nightshift)
 /datum/controller/subsystem/nightshift/proc/check_security_level() //used to nudge the controller about the security state by the alert levels.
 	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.using_map.security_state)
 	current_security_level = security_state.current_security_level
-	if(security_state.current_security_level.name != lowest_security_level.name)
+	if(security_state.current_security_level != lowest_security_level)
 		last_check_aborted_by_security_state = TRUE
 
 /datum/controller/subsystem/nightshift/proc/announce(message)

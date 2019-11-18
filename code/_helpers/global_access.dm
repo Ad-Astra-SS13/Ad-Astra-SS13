@@ -105,6 +105,8 @@
 			return global.SSmobs;
 		if("SSnano")
 			return global.SSnano;
+		if("SSnightshift")
+			return global.SSnightshift;
 		if("SSobj")
 			return global.SSobj;
 		if("SSopen_space")
@@ -467,6 +469,8 @@
 			return global.ghost_sightless_images;
 		if("ghost_traps")
 			return global.ghost_traps;
+		if("global_apc_list")
+			return global.global_apc_list;
 		if("global_message_listener")
 			return global.global_message_listener;
 		if("global_vars_")
@@ -799,6 +803,8 @@
 			return global.sqlport;
 		if("station_account")
 			return global.station_account;
+		if("station_apc_list")
+			return global.station_apc_list;
 		if("station_date")
 			return global.station_date;
 		if("stool_cache")
@@ -1022,6 +1028,8 @@
 			global.SSmobs=newval;
 		if("SSnano")
 			global.SSnano=newval;
+		if("SSnightshift")
+			global.SSnightshift=newval;
 		if("SSobj")
 			global.SSobj=newval;
 		if("SSopen_space")
@@ -1384,6 +1392,8 @@
 			global.ghost_sightless_images=newval;
 		if("ghost_traps")
 			global.ghost_traps=newval;
+		if("global_apc_list")
+			global.global_apc_list=newval;
 		if("global_message_listener")
 			global.global_message_listener=newval;
 		if("global_vars_")
@@ -1716,6 +1726,8 @@
 			global.sqlport=newval;
 		if("station_account")
 			global.station_account=newval;
+		if("station_apc_list")
+			global.station_apc_list=newval;
 		if("station_date")
 			global.station_date=newval;
 		if("stool_cache")
@@ -1886,6 +1898,7 @@
 	"SSmisc_late",
 	"SSmobs",
 	"SSnano",
+	"SSnightshift",
 	"SSobj",
 	"SSopen_space",
 	"SSpersistence",
@@ -2067,6 +2080,7 @@
 	"ghost_darkness_images",
 	"ghost_sightless_images",
 	"ghost_traps",
+	"global_apc_list",
 	"global_message_listener",
 	"global_vars_",
 	"gravity_is_on",
@@ -2233,6 +2247,7 @@
 	"sqlpass",
 	"sqlport",
 	"station_account",
+	"station_apc_list",
 	"station_date",
 	"stool_cache",
 	"stored_shock_by_ref",
