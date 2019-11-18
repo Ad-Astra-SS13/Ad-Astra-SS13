@@ -8,3 +8,11 @@
 #define TIER_INTERMEDIATE 2
 #define TIER_ADVANCED 3
 #define TIER_EXCEPTIONAL 4
+//lighting stuff
+#define LIGHTMODE_NIGHTMODE "nightmode"
+//alert lighting
+#define LIGHTMODE_BLUE "blue_alert"
+#define LIGHTMODE_VIOLET "violet_alert"
+#define LIGHTMODE_ORANGE "orange_alert"
+#define LIGHTMODE_RED "red_alert"
+#define LIGHTMODE_DELTA "delta_alert"

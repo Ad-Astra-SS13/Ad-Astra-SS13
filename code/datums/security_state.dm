@@ -152,6 +152,7 @@
 	var/up_description
 	var/down_description
 	var/psionic_control_level = PSI_IMPLANT_WARN
+	var/security_level_lightmode //what mode the lights on the ship change to.
 
 // Called when we're switching from a lower security level to this one.
 /decl/security_level/proc/switching_up_to()
@@ -195,6 +196,16 @@
 	for(var/obj/machinery/firealarm/FA in SSmachines.machinery)
 		if(FA.z in GLOB.using_map.contact_levels)
 			FA.update_icon()
+	for(var/obj/machinery/power/apc/A in global_apc_list)
+		var/turf/T = get_turf(A)
+		if(!A.z in GLOB.using_map.station_levels)
+			continue
+		else if(!istype(T.loc,/area/hallway/))
+			A.set_light_color("reset") //reset all APCs on ship to nominal brightness
+			continue
+		A.set_light_color(security_level_lightmode)
+		CHECK_TICK
+	SSnightshift.check_security_level()
 	post_status("alert")
 
 /decl/security_level/default/code_green

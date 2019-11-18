@@ -41,6 +41,9 @@
 #define APC_UPOVERLAY_LOCKED 8
 #define APC_UPOVERLAY_OPERATING 16
 
+var/global/list/global_apc_list = list()
+var/global/list/station_apc_list = list()
+
 // Various APC types
 /obj/machinery/power/apc/critical
 	is_critical = 1
@@ -128,6 +131,7 @@
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
 	var/autoname = 1
+	var/nightmode = FALSE
 
 /obj/machinery/power/apc/updateDialog()
 	if (stat & (BROKEN|MAINT))
@@ -158,6 +162,10 @@
 /obj/machinery/power/apc/Initialize(mapload, var/ndir, var/populate_parts = TRUE, var/building=0)
 	// offset 22 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
+	global_apc_list += src
+	if(src.z in GLOB.using_map.station_levels)
+		station_apc_list += src
+
 	if (building)
 		set_dir(ndir)
 
@@ -186,6 +194,9 @@
 	power_change()
 
 /obj/machinery/power/apc/Destroy()
+	global_apc_list -= src
+	if(src in station_apc_list)
+		station_apc_list -= src
 	src.update()
 	area.apc = null
 	area.power_light = 0
@@ -1144,6 +1155,41 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	locked = 1
 	update_icon()
 	return 1
+
+/obj/machinery/power/apc/proc/set_nightshift(var/state)
+	if(state == TRUE)
+		nightmode = !nightmode
+		for(var/obj/machinery/light/L in area)
+			INVOKE_ASYNC(L, /obj/machinery/light.proc/set_nightmode, TRUE)
+			CHECK_TICK
+	else
+		nightmode = !nightmode
+		for(var/obj/machinery/light/L in area)
+			INVOKE_ASYNC(L, /obj/machinery/light.proc/set_nightmode, FALSE)
+			CHECK_TICK
+
+/obj/machinery/power/apc/proc/set_light_color(var/color) //just changes the colors of the ship's lighting.
+	var/lightmode
+	switch(color)
+		if("red")
+			lightmode = LIGHTMODE_RED
+		if("violet")
+			lightmode = LIGHTMODE_VIOLET
+		if("orange")
+			lightmode = LIGHTMODE_ORANGE
+		if("blue")
+			lightmode = LIGHTMODE_BLUE
+		if("nightmode")
+			lightmode = LIGHTMODE_NIGHTMODE
+		if("delta")
+			lightmode = LIGHTMODE_DELTA
+		if("reset")
+			lightmode = null
+	for(var/obj/machinery/light/L in area)
+		INVOKE_ASYNC(L, /obj/machinery/light.proc/set_mode, lightmode)
+		CHECK_TICK
+
+
 
 /obj/item/weapon/module/power_control
 	name = "power control module"
