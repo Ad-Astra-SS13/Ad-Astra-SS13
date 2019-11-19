@@ -1,4 +1,4 @@
-# baystation12
+# Ad Astra
 
 [Code](https://github.com/Ad-Astra-SS13/Ad-Astra-SS13) - [Discord](https://discord.gg/v3pepHJ)
 
